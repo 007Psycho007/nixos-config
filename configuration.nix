@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -116,16 +115,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
-  home-manager.users.psycho = { pkgs, ...}: { 
-    home.stateVersion = "22.11";
-    programs.zsh = {
-      enable = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = ["git" "sudo" "vi-mode"];
-        };
-     };  
-          
-  };
 }
