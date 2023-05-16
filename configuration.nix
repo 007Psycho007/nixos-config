@@ -63,12 +63,12 @@
   services.xserver = {
      enable = true;
      autorun = true;
-     displayManager.defaultSession = "none+i3";
+     displayManager.defaultSession = "none+qtile";
      desktopManager.xterm.enable = false;
      displayManager.lightdm.enable = true;
      windowManager.qtile = {
         enable = true;
-        extraPackages = python3Packages: with python3Packages; [
+        extraPackages = with python3Packages; [
         qtile-extras
 	];
      };
