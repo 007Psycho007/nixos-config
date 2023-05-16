@@ -73,7 +73,6 @@
 	];
      };
   };
-  };
 
   services.pipewire = {
     enable = true;
