@@ -66,8 +66,13 @@
      displayManager.defaultSession = "none+i3";
      desktopManager.xterm.enable = false;
      displayManager.lightdm.enable = true;
-     windowManager.i3.enable = true;
-     windowManager.i3.package = pkgs.i3-gaps;
+     windowManager.qtile = {
+        enable = true;
+        extraPackages = python3Packages: with python3Packages; [
+        qtile-extras
+	];
+     };
+  };
   };
 
   services.pipewire = {
