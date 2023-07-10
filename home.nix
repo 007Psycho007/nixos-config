@@ -1,10 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  programs.home-manager.enable = true;
+
   home.username = "psycho";
   home.homeDirectory = "/home/psycho";
   
   home.file.".config/qtile".source = ./home-manager/qtile;
+
 
   programs.zsh = {
     enable = true;

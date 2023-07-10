@@ -8,8 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import (builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz"))
       ./home.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
