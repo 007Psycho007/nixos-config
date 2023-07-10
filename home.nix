@@ -9,7 +9,7 @@
   programs.home-manager.enable = true;
   
   home-manager.users."psycho" = {
-      home = "/home/psycho"
+      home = "/home/psycho";
     };
 
 
