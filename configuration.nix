@@ -99,7 +99,7 @@
     ];
 
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "SauceCodePro" ]; })
+    (nerdfonts.override { fonts = [ "Source" ]; })
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
