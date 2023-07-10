@@ -10,7 +10,7 @@
   
   home-manager.users."psycho" = {
       home = "/home/psycho"
-    }
+    };
 
 
   home.stateVersion = "21.11";
