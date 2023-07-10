@@ -47,15 +47,15 @@ other_match=[
 from keys import keys
 groups = [
         Group("dev",label="",layout="monadwide"),
-        Group("web",label="爵",layout="tile",matches=web_match),
-        Group("med",label="ﱘ",layout="tile",matches=med_match),
-        Group("com",label="", layout="tile",matches=com_match),
+        Group("web",label="󰖟",layout="tile",matches=web_match),
+        Group("med",label="󰝚",layout="tile",matches=med_match),
+        Group("com",label="󰍬", layout="tile",matches=com_match),
         Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
-        Group("set",label="漣",layout="max",matches=set_match,spawn=["pavucontrol",]),
+        Group("set",label="",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),
         Group("doc",label=""),
-        Group("re9",label=""),
-        Group("re0",label="",matches=other_match),
+        Group("re9",label="󰎼"),
+        Group("re0",label="󰎡",matches=other_match),
         ]
 for i , o in enumerate(groups):
     keys.extend(

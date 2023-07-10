@@ -136,7 +136,7 @@ def cpu(bg,**kwargs):
     return widget.CPU(
         **default_label(),
         background=bg,
-        fmt="<span size='12pt'></span>  {}",
+        fmt="<span size='12pt'></span>  {}",
         format="{load_percent}",
         width=65,
         **kwargs
@@ -261,7 +261,7 @@ widgets_main = [
     cpu(onedark["gradient2"]),
     mem(onedark["gradient2"]),
     bat(onedark["gradient2"],**powerline_back),
-    disk("/","",onedark["gradient1"]),
+    disk("/","󰗮",onedark["gradient1"]),
     disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
 ]
@@ -290,7 +290,7 @@ widgets_single = [
     cpu(onedark["gradient2"]),
     mem(onedark["gradient2"]),
     bat(onedark["gradient2"],**powerline_back),
-    disk("/","",onedark["gradient1"]),
+    disk("/","󰗮",onedark["gradient1"]),
     disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
 ]
