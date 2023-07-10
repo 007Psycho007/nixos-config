@@ -97,6 +97,10 @@
     git
     zsh-fast-syntax-highlighting
     ];
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "SauceCodePro" ]; })
+  ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
