@@ -43,7 +43,7 @@
 
     programs.rofi = {
       enable = true;
-      font = "Source Code Pro";
+      font = "Source Code Pro Bold 12";
       theme = ./home-manager/rofi/onedark.rasi;
       terminal = "kitty";
       extraConfig = {
