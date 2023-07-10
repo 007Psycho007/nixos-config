@@ -68,7 +68,7 @@
      displayManager.lightdm.enable = true;
      windowManager.qtile = {
         enable = true;
-        extraPackages = with python3Packages; [
+        extraPackages = python3Packages: with python3Packages; [
         qtile-extras
 	];
      };
