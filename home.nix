@@ -6,10 +6,9 @@
     [ # Include the results of the hardware scan.
       <home-manager/nixos>
     ];
-  programs.home-manager.enable = true;
   
-  home-manager.users."psycho" = {
-      home = "/home/psycho";
+  home-manager.users.psycho = {
+      home.homeDirectory = "/home/psycho";
     };
 
 }
