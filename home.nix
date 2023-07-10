@@ -9,6 +9,8 @@
   
   home-manager.users.psycho = {
       home.homeDirectory = "/home/psycho";
+      home.file.".config/qtile".source = ./home-manager/qtile;
+
       home.stateVersion = "21.11";
     };
 
