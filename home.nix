@@ -38,8 +38,9 @@ selection_foreground #282c34
 selection_background #979eab
 
 background_opacity 0.95
-"
-        }
+";
+        };
+
       home.stateVersion = "21.11";
     };
 
