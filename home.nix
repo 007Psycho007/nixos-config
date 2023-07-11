@@ -203,6 +203,7 @@
             owner = "oh-my-fish";
             repo = "plugin-sudope";
             rev = "83919a6";
+	    sha256 = "pD4rNuqg6TG22L9m8425CO2iqcYm8JaAEXIVa0H/v/U="
           };
         }
       ];
