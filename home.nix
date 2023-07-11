@@ -212,9 +212,9 @@
     };
     
     programs.qutebrowser = {
-        enable = true;
-        extraConfig = ./home-manager/qutebrowser;
-      }
+      enable = true;
+      extraConfig = ./home-manager/qutebrowser;
+    };
     home.stateVersion = "21.11";
   };
 } 
