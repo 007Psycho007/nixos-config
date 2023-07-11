@@ -195,7 +195,8 @@
                                 starship module time
                               end
                               starship init fish | source
-                              enable_transience";
+                              enable_transience
+                              fish_vi_key_bindings";
       plugins = [
         {
           name = "sudope";
