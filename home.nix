@@ -82,7 +82,7 @@
           disabled = false;
           symbols = {
             Arch = "";
-            NixOS = ""
+            NixOS = "";
           };
         };
 
