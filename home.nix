@@ -11,6 +11,7 @@
   home-manager.users.psycho = {
     home.homeDirectory = "/home/psycho";
 
+    home.file.".doom.d".source = ./home-manager/doom;
     home.file.".config/qtile".source = ./home-manager/qtile;
     xdg.configFile.nvim.source = ./home-manager/nvim;
     
