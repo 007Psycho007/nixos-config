@@ -5,13 +5,14 @@
   imports =
     [
       <home-manager/nixos>
+      ./neovim.nix
     ];
   
   home-manager.users.psycho = {
     home.homeDirectory = "/home/psycho";
 
     home.file.".config/qtile".source = ./home-manager/qtile;
-
+    
     programs.kitty = {
         enable = true;
         font.name = "Source Code Pro";
@@ -208,9 +209,16 @@
           };
         }
       ];
-
     };
 
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      withPython3 = true;
+      withNodeJs = true;
+    };
     home.stateVersion = "21.11";
   };
 } 
