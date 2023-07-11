@@ -104,7 +104,7 @@
           read_only_style = "red";
         };
         git_branch = {
-          conflicted = ' =$count';
+          conflicted = " =$count";
           ahead = " ⇡$count";
           behind = " ⇣$count";
           diverged = " ⇕$count";
