@@ -204,7 +204,7 @@
             repo = "plugin-sudope";
           };
         }
-      ]
+      ];
 
     };
 
