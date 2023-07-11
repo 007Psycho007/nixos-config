@@ -13,8 +13,6 @@
     home.file.".config/qtile".source = ./home-manager/qtile;
     home.file."/.config/starship/transient.toml".source = ./home-manager/starship/transient.toml;
 
-    shell = pkgs.fish;
-
     programs.kitty = {
         enable = true;
         font.name = "Source Code Pro";
