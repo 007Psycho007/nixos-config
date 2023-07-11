@@ -213,7 +213,7 @@
     
     programs.qutebrowser = {
       enable = true;
-      extraConfig = ./home-manager/qutebrowser;
+      extraConfig = (builtins.readFile ./home-manager/qutebrowser/config.py);
     };
     home.stateVersion = "21.11";
   };
