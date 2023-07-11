@@ -11,7 +11,6 @@
     home.homeDirectory = "/home/psycho";
 
     home.file.".config/qtile".source = ./home-manager/qtile;
-    home.file."/.config/starship/transient.toml".source = ./home-manager/starship/transient.toml;
 
     programs.kitty = {
         enable = true;
@@ -193,10 +192,20 @@
     programs.fish = {
         enable = true;
         interactiveShellInit = "function starship_transient_prompt_func
-  starship module time
-end
-starship init fish | source
-enable_transience";
+                                starship module time
+                              end
+                              starship init fish | source
+                              enable_transience";
+      plugins = {
+        name = "sudope";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "plugin-sudope";
+          rev = "38a5b6b6011106092009549e52249c6d6f501fba";
+          sha256 = "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs";
+        };
+    };
+        }
     };
 
     home.stateVersion = "21.11";
