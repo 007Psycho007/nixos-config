@@ -196,15 +196,16 @@
                               end
                               starship init fish | source
                               enable_transience";
-      plugins = {
-        name = "sudope";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-sudope";
-          rev = "38a5b6b6011106092009549e52249c6d6f501fba";
-          sha256 = "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs";
-        };
-      };
+      plugins = [
+        {
+          name = "sudope";
+          src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "plugin-sudope";
+          };
+        }
+      ]
+
     };
 
     home.stateVersion = "21.11";
