@@ -97,6 +97,7 @@
     zsh-fast-syntax-highlighting
     gcc
     go
+    chromium
     ];
 
   fonts.fonts = with pkgs; [
