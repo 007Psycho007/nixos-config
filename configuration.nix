@@ -94,6 +94,8 @@
     feh
     git
     zsh-fast-syntax-highlighting
+    gcc
+    go
     ];
 
   fonts.fonts = with pkgs; [
