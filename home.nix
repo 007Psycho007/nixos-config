@@ -205,7 +205,7 @@
         enable = true;  
 
       };
-      initExtra = "
+      initExtra = ''
 zle-line-init() {
   emulate -L zsh
 
@@ -221,7 +221,7 @@ zle-line-init() {
   local saved_prompt=$PROMPT
   local saved_rprompt=$RPROMPT
   PROMPT='$(STARSHIP_CONFIG=~/.config/starship/transient.toml starship prompt --terminal-width="$COLUMNS" --keymap="${KEYMAP:-}" --status="$STARSHIP_CMD_STATUS" --pipestatus="${STARSHIP_PIPE_STATUS[*]}" --cmd-duration="${STARSHIP_DURATION:-}" --jobs="$STARSHIP_JOBS_COUNT")'
-  RPROMPT=''
+  RPROMPT=""
   zle .reset-prompt
   PROMPT=$saved_prompt
   RPROMPT=$saved_rprompt
@@ -232,7 +232,8 @@ zle-line-init() {
     zle .accept-line
   fi
   return ret
-}"
+}
+''
     };
   oh-my-zsh = {
     enable =     
