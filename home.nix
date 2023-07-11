@@ -107,7 +107,7 @@
         git_status = {
           conflicted = " =$count";
           ahead = " ⇡$count";
-          behind = " $count";
+          behind = " ⇣$count";
           diverged = " ⇕$count";
           up_to_date = "✓";
           untracked = " ?$count";
@@ -116,7 +116,7 @@
           deleted = " $count";
           staged = " +$count";
           modified = " !$count";
-          format = "[$all_status](fg:red bg:8) ";
+          format = " [$all_status](fg:red bg:8) ";
         };
 
         conda = {
