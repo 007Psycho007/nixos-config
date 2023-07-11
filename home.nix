@@ -5,7 +5,6 @@
     [
       <home-manager/nixos>
       ./neovim.nix
-      ./doom.nix
     ];
   
   home-manager.users.psycho = {
@@ -212,6 +211,10 @@
       ];
     };
     
+    programs.qutebrowser = {
+        enable = true;
+        extraConfig = ./home-manager/qutebrowser
+      }
     home.stateVersion = "21.11";
   };
 } 
