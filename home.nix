@@ -202,6 +202,7 @@
           src = pkgs.fetchFromGitHub {
             owner = "oh-my-fish";
             repo = "plugin-sudope";
+            rev = "83919a6"
           };
         }
       ];
