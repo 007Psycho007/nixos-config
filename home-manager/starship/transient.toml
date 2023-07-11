@@ -6,5 +6,5 @@ format = """
 
 [time]
 disabled = false
-format = "[$time](fg:blue bg:8)"
+format = "[$time](fg:blue bg:8)[ ](fg:8)"
 time_format = "%H:%M"

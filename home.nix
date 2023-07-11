@@ -103,7 +103,20 @@
           read_only = "";
           read_only_style = "red";
         };
-        
+        git_branch = {
+          conflicted = ' =$count';
+          ahead = " ⇡$count";
+          behind = " ⇣$count";
+          diverged = " ⇕$count";
+          up_to_date = "✓";
+          untracked = " ?$count";
+          stashed = " $$count";
+          renamed = " »$count";
+          deleted = " $count";
+          staged = " +$count";
+          modified = " !$count";
+          format = "[$all_status](fg:red bg:8) ";
+        };
         git_status = {
           conflicted = " =$count";
           ahead = " ⇡$count";
@@ -116,7 +129,7 @@
           deleted = " $count";
           staged = " +$count";
           modified = " !$count";
-          format = " [$all_status](fg:red bg:8) ";
+          format = "[$all_status](fg:red bg:8) ";
         };
 
         conda = {
@@ -183,13 +196,18 @@
           format = "$symbol";
           vicmd_symbol = "";
         };
+        time = {
+          disabled = false;
+          format = "[$time](fg:blue bg:8)[ ](fg:8)";
+          time_format = "%H:%M";
+        };
       };
     };
 
     programs.fish = {
         enable = true;
         interactiveShellInit = "function starship_transient_prompt_func
-  starship module character
+  starship module time
 end
 starship init fish | source
 enable_transience";
