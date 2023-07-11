@@ -120,7 +120,7 @@
         git_status = {
           conflicted = " =$count";
           ahead = " ⇡$count";
-          behind = ' "$count";
+          behind = " $count";
           diverged = " ⇕$count";
           up_to_date = "✓";
           untracked = " ?$count";
