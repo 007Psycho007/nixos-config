@@ -174,12 +174,6 @@
           style = "bold white";
         };
 
-        time = {
-          disabled = false;
-          style = "bold bright-black";
-          format = "[$time]($style)";
-        };
-
         status = {
           symbol = "[](fg:red bg:8) ";
           success_symbol = "[](fg:green bg:8) ";
