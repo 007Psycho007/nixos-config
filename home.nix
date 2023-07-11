@@ -7,7 +7,6 @@
       <home-manager/nixos>
     ];
   
-# User Config
   home-manager.users.psycho = {
     home.homeDirectory = "/home/psycho";
     home.file.".config/qtile".source = ./home-manager/qtile;
@@ -68,7 +67,7 @@
       enable = true;
       enableZshIntegration = true;
       settings = {
-        format = """
+        format = ''
         [ $os ](bg:8 fg:blue)\
         [](fg:8 bg:white)\
         [ $username ](fg:black bg:white)\
@@ -87,7 +86,7 @@
         [$conda](fg:white bg:8)\
         [$nix_shell](fg:white bg:8)
         [ $character](fg:green) 
-        """;
+        '';
         
         continuation_prompt = "      [│](fg:blue)  ";
         os = {
@@ -198,7 +197,6 @@
         };
       };
     };
-
     home.stateVersion = "21.11";
   };
   
