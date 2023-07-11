@@ -8,5 +8,5 @@ let
                                 # and packages.el files
   };
 in {
-  home.packages = [ doom-emacs ];
+  home-manager.users.psycho.home.packages = [ doom-emacs ];
 }
