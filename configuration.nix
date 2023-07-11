@@ -57,7 +57,7 @@
     isNormalUser = true;
     description = "psycho";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    shell = pkgs.fish;
   };
 
   # Allow unfree packages
