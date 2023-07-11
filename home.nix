@@ -95,7 +95,7 @@
           style = "bold blue";
           disabled = false;
           symbols = {
-            Arch = ""
+            Arch = "";
           };
         };
 
