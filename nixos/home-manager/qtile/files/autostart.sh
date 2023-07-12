@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 bash $HOME/.screenlayout/start.sh &
 setxkbmap -option caps:escape &

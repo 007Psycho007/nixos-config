@@ -8,7 +8,6 @@ dev_match=[
     Match(wm_class=["kitty"]),
 ]
 web_match=[
-    Match(wm_class=["firefox"]),
     Match(wm_class=["librewolf-default"]),
 ]
 

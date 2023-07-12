@@ -10,9 +10,26 @@
   home-manager.users.psycho = {
     home.homeDirectory = "/home/psycho";
 
-    home.file.".config/qtile".source = ./home-manager/qtile;
+    xdg.configFile.qtile.source = ./home-manager/qtile;
     xdg.configFile.nvim.source = ./home-manager/nvim;
+    xdg.configFile.scripts.source = ./home-manager/scripts;
     
+
+    programs.ssh = {
+        enable = true;
+        matchBlocks = {
+          "nas" = {
+            hostname = "192.168.0.126";
+            user = "psycho";
+          };
+        };
+      };
+
+    programs.git = {
+      enable = true;
+      userName  = "Jan";
+      userEmail = "jan.peterhaensel@adconova.com";
+    };
     programs.kitty = {
         enable = true;
         font.name = "Source Code Pro";
@@ -197,7 +214,8 @@
                               end
                               starship init fish | source
                               enable_transience
-                              fish_vi_key_bindings";
+                              fish_vi_key_bindings
+                              any-nix-shell fish | source";
       plugins = [
         {
           name = "sudope";
@@ -211,10 +229,16 @@
       ];
     };
     
-    programs.qutebrowser = {
-      enable = true;
-      extraConfig = (builtins.readFile ./home-manager/qutebrowser/config.py);
-    };
+#    programs.qutebrowser = {
+#      enable = true;
+#      extraConfig = (builtins.readFile ./home-manager/qutebrowser/config.py);
+#    };
+    programs.lazygit.enable = true;
+    programs.lsd = {
+        enable = true;
+        enableAliases = true;
+      };
+
     home.stateVersion = "21.11";
   };
 } 

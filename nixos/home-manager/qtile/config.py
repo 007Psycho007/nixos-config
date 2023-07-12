@@ -35,6 +35,11 @@ import subprocess
 mod = "mod4"
 terminal = guess_terminal()
 
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/files/autostart.sh')
+    subprocess.Popen([home])
+
 from keys import keys
 from groups import groups
 from layout import layouts
