@@ -55,7 +55,7 @@ def icon(symbol,**kwargs):
 def menu(**kwargs):
     return widget.TextBox(
         **default_prefix(),
-        text="  ",
+        text="  ",
         fontsize=defaults["iconsize"],
         mouse_callbacks={"Button1":lazy.spawn("rofi -show run")},
         **kwargs
@@ -126,7 +126,7 @@ def network(bg,**kwargs):
     return widget.Net(
         **default_label(),
         background=bg,
-        fmt="<span size='12pt'></span>{}",
+        fmt="<span size='12pt'>󰛳</span>{}",
         format='{down} ↓↑ {up}',
         width=150,
         **kwargs

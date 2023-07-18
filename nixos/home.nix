@@ -238,7 +238,15 @@
         enable = true;
         enableAliases = true;
       };
-
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+      ms-python.python
+      ms-toolsai.jupyter
+    ];
+  };
     home.stateVersion = "21.11";
   };
 } 

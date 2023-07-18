@@ -90,6 +90,10 @@ local mappings = {
     s = {"<cmd>lua require'iron'.core.send_line()<cr>", "Send Line"},
     v = {"<cmd>lua require'iron'.core.send_visual()<cr>", "Send Visual"},
     },
+  m = {
+    name = "Magma",
+    o = {},
+  },
   s = {
     name = "Split",
     v = { "<cmd>vsplit<cr>", "Split Vertical"},

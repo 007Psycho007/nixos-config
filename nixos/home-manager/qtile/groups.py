@@ -35,6 +35,9 @@ sec_match=[
     Match(wm_class=["KeePassXC"])
 ]
 
+doc_match=[ 
+    Match(wm_class=["VSCodium"])
+]
 ent_match=[ 
     Match(wm_class=["Steam"]),
     Match(wm_class=["dwarffortress"]),
@@ -52,7 +55,7 @@ groups = [
         Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
         Group("set",label="",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),
-        Group("doc",label=""),
+        Group("doc",label="",matches=doc_match),
         Group("re9",label="󰎼"),
         Group("re0",label="󰎡",matches=other_match),
         ]

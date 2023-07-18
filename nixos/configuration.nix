@@ -90,8 +90,8 @@
      windowManager.qtile = {
         enable = true;
         extraPackages = python3Packages: with python3Packages; [
-        qtile-extras
-	];
+          qtile-extras
+	      ];
      };
   };
   hardware.bluetooth = {
@@ -131,7 +131,7 @@
     xclip
     bluez
     pavucontrol
-    emacs
+    playerctl
     ];
 
   fonts.fonts = with pkgs; [

@@ -100,7 +100,8 @@ require('lazy').setup({
   -- {'stevearc/dressing.nvim'}
   -- Iron -- 
   {'hkupty/iron.nvim'},
-
+  { 'dccsillag/magma-nvim', 
+    build = ':UpdateRemotePlugins' },
   -- Org
   {'nvim-orgmode/orgmode'},
   {
