@@ -98,17 +98,17 @@ local status = function (str)
     elseif (str == "COMMAND") then
         return "  "
     elseif (str == "V-LINE") then
-        return " "
+        return "󰈈 "
     elseif (str == "VISUAL") then
-        return "  "
+        return " 󰈈 "
     elseif (str == "V-BLOCK") then
-        return " "
+        return "󰈈 "
     elseif (str == "REPLACE") then
         return "  "
     elseif (str == "TERMINAL") then
         return "  "
     elseif (str == "O-PENDING") then
-        return "  "
+        return "󰈈 "
     else return str
     end
 end

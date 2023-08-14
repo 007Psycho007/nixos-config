@@ -74,7 +74,7 @@
   users.users.psycho = {
     isNormalUser = true;
     description = "psycho";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "docker" "vboxusers"];
     shell = pkgs.fish;
   };
 
@@ -116,14 +116,14 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nyxt
     wget
-    polybar
     zsh
     firefox
     rofi
     feh
     git
-    zsh-fast-syntax-highlighting
+    cmake
     gcc
+    libtool
     go
     chromium
     bitwarden
@@ -132,11 +132,26 @@
     bluez
     pavucontrol
     playerctl
+    virt-manager
     ];
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     emacs-all-the-icons-fonts
   ];
+
+  virtualisation = {
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        defaultNetwork.settings = {
+          dns_enabled = true;
+        };
+      };
+      virtualbox.host = {
+        enable = true;
+      };
+    };
+
   system.stateVersion = "22.11"; # Did you read the comment?
 }

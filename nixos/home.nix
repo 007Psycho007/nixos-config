@@ -4,7 +4,6 @@
   imports =
     [
       <home-manager/nixos>
-      ./neovim.nix
     ];
   
   home-manager.users.psycho = {
@@ -14,6 +13,10 @@
     xdg.configFile.nvim.source = ./home-manager/nvim;
     xdg.configFile.scripts.source = ./home-manager/scripts;
     
+    home.file."emacsinit" = {
+      source = ./home-manager/emacs/init.el;
+      target = ".emacs.d/init.el";
+    };
 
     programs.ssh = {
         enable = true;
@@ -88,8 +91,7 @@
       enable = true;
       enableFishIntegration = true;
       settings = {
-        format = "[ $os ](bg:8 fg:blue)[](fg:8 bg:white)[ $username ](fg:black bg:white)[](fg:white bg:8)[ $directory ](fg:white bg:8)[$git_branch$git_status](fg:white bg:8)[$golang](fg:white bg:8)[$python](fg:white bg:8)[$lua](fg:white bg:8)[$terraform](fg:white bg:8)[$kubernetes](fg:white bg:8)[](fg:8)[$fill](fg:white)[](fg:8)[$status](fg:white bg:8)[$conda](fg:white bg:8)[$nix_shell](fg:white bg:8)
- [ $character](fg:green) ";
+        format = "[ $os ](bg:8 fg:blue)[](fg:8 bg:white)[ $username ](fg:black bg:white)[](fg:white bg:8)[ $directory ](fg:white bg:8)[$git_branch$git_status](fg:white bg:8)[$golang](fg:white bg:8)[$python](fg:white bg:8)[$lua](fg:white bg:8)[$terraform](fg:white bg:8)[$kubernetes](fg:white bg:8)[](fg:8)[$fill](fg:white)[](fg:8)[$status](fg:white bg:8)[$conda](fg:white bg:8)[$nix_shell](fg:white bg:8)[$character](fg:white bg:8) ";
         
         continuation_prompt = "      [│](fg:blue)  ";
         os = {
@@ -197,7 +199,12 @@
 
         character = {
           format = "$symbol";
-          vicmd_symbol = "";
+          success_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)";
+          error_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)";
+          vicmd_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)";
+          vimcmd_replace_one_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)";
+          vimcmd_replace_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)";
+          vimcmd_visual_symbol = " [󰈈  ](fg:white bg:8)[\n ❯](bold green)";
         };
         time = {
           disabled = false;
@@ -212,10 +219,13 @@
         interactiveShellInit = "function starship_transient_prompt_func
                                 starship module time
                               end
+                              export TERM='xterm-kitty'
+                              alias ssh='kitty +kitten ssh'
                               starship init fish | source
                               enable_transience
                               fish_vi_key_bindings
-                              any-nix-shell fish | source";
+                              any-nix-shell fish | source
+                              set fish_greeting";
       plugins = [
         {
           name = "sudope";
@@ -247,6 +257,23 @@
       ms-toolsai.jupyter
     ];
   };
-    home.stateVersion = "21.11";
+
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    withPython3 = true;
+    withNodeJs = true;
+    extraConfig = "";
+  };
+
+
+    programs.emacs = {
+      enable = true;
+    };
+
+  home.stateVersion = "21.11";
   };
 } 
