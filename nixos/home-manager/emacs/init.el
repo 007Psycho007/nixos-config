@@ -1,6 +1,6 @@
 (org-babel-load-file
  (expand-file-name
-  "~/Projects/private/nixos-config/nixos/home-manager/emacs/config.org"
+  "~/.nixos-config/nixos/home-manager/emacs/config.org"
   user-emacs-directory))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

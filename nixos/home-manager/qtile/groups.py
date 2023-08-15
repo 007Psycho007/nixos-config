@@ -36,15 +36,17 @@ sec_match=[
 ]
 
 doc_match=[ 
-    Match(wm_class=["VSCodium"])
+    Match(wm_class=["VSCodium"]),
+    Match(wm_class=["Emacs"])
 ]
 ent_match=[ 
-    Match(wm_class=["Steam"]),
+    Match(wm_class=["steam"]),
     Match(wm_class=["dwarffortress"]),
 ]
 
 other_match=[
-    Match(wm_class=["Shadow"]),
+    Match(wm_class=["Shadow PC"]),
+    Match(wm_class=["Shadow PC - Display"]),
 ]
 from keys import keys
 groups = [

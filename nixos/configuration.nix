@@ -3,12 +3,15 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  vars = import ./vars.nix;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./home.nix
+      ./local.nix
     ];
 
   # Bootloader.
@@ -16,13 +19,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-6a67d45f-bfa6-4dc8-822b-1bcd224769d7".device = "/dev/disk/by-uuid/6a67d45f-bfa6-4dc8-822b-1bcd224769d7";
-  boot.initrd.luks.devices."luks-6a67d45f-bfa6-4dc8-822b-1bcd224769d7".keyFile = "/crypto_keyfile.bin";
 
   environment.etc = {
 	"wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
@@ -35,7 +33,7 @@
 	'';
   };
 
-  networking.hostName = "adconova-pc"; # Define your hostname.
+  networking.hostName = vars.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -122,10 +120,10 @@
     feh
     git
     cmake
+    gnumake
     gcc
     libtool
     go
-    chromium
     bitwarden
     any-nix-shell
     xclip

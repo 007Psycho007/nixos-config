@@ -160,7 +160,7 @@
 
 (dt/leader-keys
   "g" '(:ignore t :wk "Magit")
-  "g g" '(org-time-stamp :wk "Open Magit"))
+  "g g" '(magit :wk "Open Magit"))
 
 (dt/leader-keys
   "p" '(projectile-command-map :wk "Projectile"))
