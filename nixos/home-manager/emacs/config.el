@@ -73,6 +73,7 @@
 (setq use-dialog-box nil)
 (setq-default find-file-visit-truename nil)
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
+(setq backup-directory-alist `(("." . "~/.saves")))
 
 (use-package general
   :config
@@ -86,11 +87,15 @@
     :global-prefix "M-SPC") ;; access leader in insert mode
 
   (dt/leader-keys
-  "SPC" '(counsel-M-x :wk "Counsel M-x")
+    "SPC" '(counsel-M-x :wk "Counsel M-x")
+
+    "TAB" '(tab-bar-switch-to-next-tab :wk "Window Right")
+    "n" '(tab-bar-new-tab :wk "Quit Emacs (No Saves)")
+    "x" '(tab-bar-close-tab :wk "Quit Emacs (No Saves)")
+    "q" '(kill-emacs :wk "Quit Emacs (No Saves)")
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/Projects/private/nixos-config/nixos/home-manager/emacs/config.org")) :wk "Edit emacs config")
-    "f r" '(counsel-recentf :wk "Find recent files")
-    "TAB TAB" '(comment-line :wk "Comment lines"))
+    "f c" '((lambda () (interactive) (find-file "~/.nixos-config/nixos/home-manager/emacs/config.org")) :wk "Edit emacs config")
+    "f r" '(counsel-recentf :wk "Find recent files"))
 
   (dt/leader-keys
     "b" '(:ignore t :wk "buffer")
@@ -151,12 +156,11 @@
   "p" '(projectile-command-map :wk "Projectile"))
 
   (dt/leader-keys
-    "t" '(:ignore t :wk "Toggle")
-    "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
-    "t n" '(neotree-toggle :wk "Toggle neotree file viewer")
-    "t t" '(visual-line-mode :wk "Toggle truncated lines")
-    "t v" '(vterm-toggle :wk "Toggle vterm"))
-
+    "o" '(:ignore t :wk "Toggle")
+    "o l" '(display-line-numbers-mode :wk "Toggle line numbers")
+    "o n" '(neotree-toggle :wk "Toggle neotree file viewer")
+    "o t" '(visual-line-mode :wk "Toggle truncated lines")
+    "o v" '(vterm-toggle :wk "Toggle vterm"))
 
   (dt/leader-keys
     "j" '(:ignore t :wk "Jupyter")
@@ -165,7 +169,8 @@
 
   (dt/leader-keys
     "l" '(:ignore t :wk "LSP")
-    "l d" '(lsp-ui-doc-glance :wk "Doc"))
+    "l d" '(lsp-ui-doc-glance :wk "Doc")
+    "l c" '(comment-line :wk "Comment lines"))
 
   (dt/leader-keys 
     "s" '(:ignore t :wk "Split")
@@ -174,8 +179,17 @@
     "s n" '(evil-window-new :wk "New window")
     "s h" '(evil-window-split :wk "Horizontal split window")
     "s v" '(evil-window-vsplit :wk "Vertical split window"))
+
+
+  (dt/leader-keys
+    "t" '(:ignore t :wk "Tab Bar")
+    "t h" '(tab-bar-switch-to-prev-tab :wk "Tab left")
+    "t l" '(tab-bar-switch-to-next-tab :wk "Tab right")
+    "t c" '(tab-bar-close-tab :wl "Close Tabs"))
+
   (dt/leader-keys
     "w" '(:ignore t :wk "Windows")
+
     ;; Window motions
     "w h" '(evil-window-left :wk "Window left")
     "w j" '(evil-window-down :wk "Window down")
@@ -236,52 +250,6 @@
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
-
-(use-package company
-  :defer 2
-  :diminish
-  :custom
-  (company-begin-commands '(self-insert-command))
-  (company-idle-delay .1)
-  (company-minimum-prefix-length 2)
-  (company-show-numbers t)
-  (company-tooltip-align-annotations 't)
-  (global-company-mode t))
-
-(use-package company-box
-  :after company
-  :diminish
-  :hook (company-mode . company-box-mode))
-
-(use-package dashboard
-  :ensure t 
-  :if (< (length command-line-args) 2)
-  :init
-  (setq initial-buffer-choice 'dashboard-open)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
-  (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
-  (setq dashboard-center-content nil) ;; set to 't' for centered content
-  (setq dashboard-items '((recents . 5)
-                          (agenda . 5 )
-                          (projects . 3 )))
-  :config
-  (dashboard-setup-startup-hook))
-
-(use-package diminish)
-
-(use-package peep-dired
-  :after dired
-  :hook (evil-normalize-keymaps . peep-dired-hook)
-  :config
-    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file) ; use dired-find-file instead if not using dired-open package
-    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
-)
-
-;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
 
 (require 'windmove)
 
@@ -352,6 +320,57 @@ one, an error is signaled."
       (set-window-buffer other-win buf-this-buf)
       (select-window other-win))))
 
+(use-package company
+  :defer 2
+  :diminish
+  :custom
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay .1)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+  (global-company-mode t))
+
+(use-package company-box
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
+
+(use-package dashboard
+  :ensure t 
+  :if (< (length command-line-args) 2)
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
+  (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
+  (setq dashboard-center-content t) ;; set to 't' for centered content
+  (setq dashboard-items '((recents . 5)
+                          (agenda . 5 )
+                          (projects . 3 )))
+  :config
+  (dashboard-setup-startup-hook))
+
+(use-package diminish)
+
+(use-package peep-dired
+  :after dired
+  :hook (evil-normalize-keymaps . peep-dired-hook)
+  :config
+    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file) ; use dired-find-file instead if not using dired-open package
+    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+)
+
+;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -362,6 +381,17 @@ one, an error is signaled."
 
 (setq inhibit-startup-message t) 
 (setq initial-scratch-message nil)
+
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
+
+(use-package git-gutter-fringe
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
 (use-package counsel
   :after ivy
@@ -439,8 +469,9 @@ one, an error is signaled."
   :config
   (setq neo-smart-open t
         neo-show-hidden-files t
-        neo-window-width 55
+        neo-window-width 35
         neo-window-fixed-size nil
+        neo-window-position (quote right)
         inhibit-compacting-font-caches t
         projectile-switch-project-action 'neotree-projectile-action) 
         ;; truncate long file names in neotree
@@ -486,6 +517,14 @@ one, an error is signaled."
   (interactive)
   (load-file user-init-file))
 
+(use-package restclient
+  :ensure t
+  :config
+  (remove-hook 'restclient-mode-hook 'restclient-outline-mode)
+  (restclient-mode)
+)
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
+
 (use-package projectile
   :diminish
   :config
@@ -515,12 +554,60 @@ one, an error is signaled."
                   (reusable-frames . visible)
                   (window-height . 0.3))))
 
+(tab-bar-mode 1)                           ;; enable tab bar
+(setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
+(setq tab-bar-close-button-show nil)       ;; hide tab close / X button
+(setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
+(setq tab-bar-tab-hints t)                 ;; show tab numbers
+(setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+(setq tab-bar-tab-name-function #'my/name-tab-by-project-or-default)
+
+(defvar ct/circle-numbers-alist
+  '((1 . "󰎡")
+    (1 . "󰎤")
+    (2 . "󰎧")
+    (3 . "󰎪")
+    (4 . "󰎭")
+    (5 . "󰎱")
+    (6 . "󰎳")
+    (7 . "󰎶")
+    (8 . "󰎹")
+    (9 . "󰎼"))
+  "Alist of integers to strings of circled unicode numbers.")
+
+(defun my/name-tab-by-project-or-default ()
+  "Return project name if in a project, or default tab-bar name if not.
+The default tab-bar name uses the buffer name."
+  (let ((project-name (projectile-project-name)))
+    (if (string= "-" project-name)
+        (tab-bar-tab-name-current)
+      (projectile-project-name))))
+
+(defun ct/tab-bar-tab-name-format-default (tab i)
+  (let ((current-p (eq (car tab) 'current-tab))
+        (tab-num (if (and tab-bar-tab-hints (< i 10))
+                     (alist-get i ct/circle-numbers-alist) "")))
+    (propertize
+     (concat "▎ "
+             tab-num
+             " "
+             (alist-get 'name tab)
+             (or (and tab-bar-close-button-show
+                      (not (eq tab-bar-close-button-show
+                               (if current-p 'non-selected 'selected)))
+                      tab-bar-close-button)
+                 "")
+             " ")
+     'face (funcall tab-bar-tab-face-function tab))))
+(setq tab-bar-tab-name-format-function #'ct/tab-bar-tab-name-format-default)
+
 (use-package doom-themes
   :ensure t
   :config
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t
+        doom-themes-neotree-file-icons t)
   (load-theme 'doom-one t)
 
   ;; Enable flashing mode-line on errors
@@ -550,6 +637,10 @@ one, an error is signaled."
       evil-motion-state-tag   (propertize "" 'face '((:background "blue") :foreground "white"))
       evil-visual-state-tag   (propertize "" 'face '((:background "grey80" :foreground "black")))
       evil-operator-state-tag (propertize "" 'face '((:background "purple"))))
+
+(custom-set-faces
+  `(tab-bar ((t (:height 1.2))))
+  `(tab-bar-bar ((t (:foreground "61afef")))))
 
 (use-package which-key
   :init
