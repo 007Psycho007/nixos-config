@@ -92,7 +92,7 @@
     "TAB" '(tab-bar-switch-to-next-tab :wk "Window Right")
     "n" '(tab-bar-new-tab :wk "Quit Emacs (No Saves)")
     "x" '(tab-bar-close-tab :wk "Quit Emacs (No Saves)")
-    "q" '(kill-emacs :wk "Quit Emacs (No Saves)")
+    "q" '(delete-frame :wk "Quit Emacs (No Saves)")
     "." '(find-file :wk "Find file")
     "f c" '((lambda () (interactive) (find-file "~/.nixos-config/nixos/home-manager/emacs/config.org")) :wk "Edit emacs config")
     "f r" '(counsel-recentf :wk "Find recent files"))
@@ -109,6 +109,8 @@
   (dt/leader-keys
     "d" '(:ignore t :wk "Dired")
     "d d" '(dired :wk "Open dired")
+    "d c" '(dired-create-empty-file :wk "Open dired")
+    "d a" '(dired-create-directory :wk "Open dired")
     "d j" '(dired-jump :wk "Dired jump to current")
     "d n" '(neotree-dir :wk "Open directory in neotree")
     "d p" '(peep-dired :wk "Peep-dired"))
@@ -487,6 +489,15 @@ one, an error is signaled."
 
 (use-package nix-mode
   :mode ("\\.nix\\'" "\\.nix.in\\'"))
+
+(use-package company-nixos-options
+  :ensure t
+  :init (add-to-list 'company-backends 'company-nixos-options)
+)
+
+(use-package direnv
+ :config
+ (direnv-mode))
 
 (use-package toc-org
     :commands toc-org-enable

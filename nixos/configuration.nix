@@ -109,7 +109,18 @@ in
     pulse.enable = true;
     wireplumber.enable = true;
   }; 
+  
+
+
   services.blueman.enable = true;
+
+  services.lorri.enable = true;
+  
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+  };
+  
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nyxt
@@ -123,7 +134,6 @@ in
     gnumake
     gcc
     libtool
-    go
     bitwarden
     any-nix-shell
     xclip

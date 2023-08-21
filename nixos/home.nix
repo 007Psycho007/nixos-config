@@ -221,10 +221,12 @@
                               end
                               export TERM='xterm-kitty'
                               alias ssh='kitty +kitten ssh'
+                              alias emacs='emacsclient --no-wait --create-frame'
                               starship init fish | source
                               enable_transience
                               fish_vi_key_bindings
                               any-nix-shell fish | source
+                              direnv hook fish | source
                               set fish_greeting";
       plugins = [
         {
@@ -261,7 +263,6 @@
 
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     vimAlias = true;
     vimdiffAlias = true;
     withPython3 = true;
@@ -269,11 +270,22 @@
     extraConfig = "";
   };
 
-
-    programs.emacs = {
+  # ...other config, other config...
+    programs.direnv = {
       enable = true;
     };
 
+    services.emacs = {
+      enable = true;
+      package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+      defaultEditor = true;
+      client = {
+        enable = true;
+        arguments = [ "--no-wait" "-c" ];
+
+      };
+
+    };
   home.stateVersion = "21.11";
   };
 } 
