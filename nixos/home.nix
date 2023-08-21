@@ -221,7 +221,6 @@
                               end
                               export TERM='xterm-kitty'
                               alias ssh='kitty +kitten ssh'
-                              alias emacs='emacsclient --no-wait --create-frame'
                               starship init fish | source
                               enable_transience
                               fish_vi_key_bindings
@@ -250,15 +249,6 @@
         enable = true;
         enableAliases = true;
       };
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      vscodevim.vim
-      ms-python.python
-      ms-toolsai.jupyter
-    ];
-  };
 
 
   programs.neovim = {
@@ -277,15 +267,13 @@
 
     services.emacs = {
       enable = true;
-      package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-      defaultEditor = true;
+      package = pkgs.emacs29;
       client = {
         enable = true;
         arguments = [ "--no-wait" "-c" ];
-
       };
-
     };
+
   home.stateVersion = "21.11";
   };
 } 

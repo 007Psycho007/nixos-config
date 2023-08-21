@@ -92,7 +92,6 @@ in
 	      ];
      };
   };
-
   hardware.bluetooth = {
     enable = true;
     settings = {
@@ -111,7 +110,7 @@ in
     wireplumber.enable = true;
   }; 
   
-  services.picom.enable = true;
+
 
   services.blueman.enable = true;
 
@@ -155,12 +154,6 @@ in
       virtualbox.host = {
         enable = true;
       };
-    };
-
-
-    services.emacs = {
-      enable = true;
-      package = pkgs.emacs29;
     };
 
   system.stateVersion = "22.11"; # Did you read the comment?

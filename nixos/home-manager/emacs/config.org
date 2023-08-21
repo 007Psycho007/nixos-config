@@ -823,6 +823,8 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 
 ** Transparency
 #+begin_src emacs-lisp
+(set-frame-parameter nil 'alpha-background 95)
+
 (add-to-list 'default-frame-alist '(alpha-background . 95)) ; For all new frames henceforth
 #+end_src
 

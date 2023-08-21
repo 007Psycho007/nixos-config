@@ -631,6 +631,8 @@ The default tab-bar name uses the buffer name."
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(set-frame-parameter nil 'alpha-background 95)
+
 (add-to-list 'default-frame-alist '(alpha-background . 95)) ; For all new frames henceforth
 
 (use-package doom-modeline
