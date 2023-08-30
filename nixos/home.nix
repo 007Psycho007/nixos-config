@@ -267,7 +267,7 @@
 
     services.emacs = {
       enable = true;
-      package = pkgs.emacs29;
+      package = pkgs.emacs;
       client = {
         enable = true;
         arguments = [ "--no-wait" "-c" ];

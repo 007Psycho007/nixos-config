@@ -3,13 +3,13 @@
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-			      :ref nil
-			      :files (:defaults (:exclude "extensions"))
-			      :build (:not elpaca--activate-package)))
+			  :ref nil
+			  :files (:defaults (:exclude "extensions"))
+			  :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-       (build (expand-file-name "elpaca/" elpaca-builds-directory))
-       (order (cdr elpaca-order))
-       (default-directory repo))
+   (build (expand-file-name "elpaca/" elpaca-builds-directory))
+   (order (cdr elpaca-order))
+   (default-directory repo))
   (add-to-list 'load-path (if (file-exists-p build) build repo))
   (unless (file-exists-p repo)
     (make-directory repo t)
@@ -17,17 +17,17 @@
     (condition-case-unless-debug err
 	(if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
 		 ((zerop (call-process "git" nil buffer t "clone"
-				       (plist-get order :repo) repo)))
+				   (plist-get order :repo) repo)))
 		 ((zerop (call-process "git" nil buffer t "checkout"
-				       (or (plist-get order :ref) "--"))))
+				   (or (plist-get order :ref) "--"))))
 		 (emacs (concat invocation-directory invocation-name))
 		 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-				       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+				   "--eval" "(byte-recompile-directory \".\" 0 'force)")))
 		 ((require 'elpaca))
 		 ((elpaca-generate-autoloads "elpaca" repo)))
 	    (kill-buffer buffer)
 	  (error "%s" (with-current-buffer buffer (buffer-string))))
-      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  ((error) (warn "%s" err) (delete-directory repo 'recursive))))
   (unless (require 'elpaca-autoloads nil t)
     (require 'elpaca)
     (elpaca-generate-autoloads "elpaca" repo)
@@ -75,6 +75,14 @@
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq browse-url-browser-function 'eww-browse-url)
+
 (use-package general
   :config
   (general-evil-setup)
@@ -90,7 +98,7 @@
     "SPC" '(counsel-M-x :wk "Counsel M-x")
 
     "TAB" '(tab-bar-switch-to-next-tab :wk "Window Right")
-    "n" '(tab-bar-new-tab :wk "Quit Emacs (No Saves)")
+    "n" '(tab-bar-new-tab :wk "New Tab")
     "x" '(tab-bar-close-tab :wk "Quit Emacs (No Saves)")
     "q" '(delete-frame :wk "Quit Emacs (No Saves)")
     "." '(find-file :wk "Find file")
@@ -109,11 +117,17 @@
   (dt/leader-keys
     "d" '(:ignore t :wk "Dired")
     "d d" '(dired :wk "Open dired")
-    "d c" '(dired-create-empty-file :wk "Open dired")
-    "d a" '(dired-create-directory :wk "Open dired")
+    "d c" '(dired-create-empty-file :wk "Create File")
+    "d a" '(dired-create-directory :wk "Create Directory")
     "d j" '(dired-jump :wk "Dired jump to current")
     "d n" '(neotree-dir :wk "Open directory in neotree")
     "d p" '(peep-dired :wk "Peep-dired"))
+
+  (dt/leader-keys
+    "r" '(:ignore t :wk "Misc Tools")
+    "r f" '(:ignore t :wk "Elfeed")
+    "r f f" '(elfeed :wk "Open Elfeed")
+    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link"))
 
   (dt/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -122,8 +136,7 @@
     "e e" '(eval-expression :wk "Evaluate and elisp expression")
     "e h" '(counsel-esh-history :which-key "Eshell history")
     "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-    "e r" '(eval-region :wk "Evaluate elisp in region")
-    "e s" '(eshell :which-key "Eshell"))
+    "e r" '(eval-region :wk "Evaluate elisp in region"))
 
  (dt/leader-keys
     "h" '(:ignore t :wk "Help")
@@ -139,7 +152,8 @@
   "m t" '(org-todo :wk "Org todo")
   "m B" '(org-babel-tangle :wk "Org babel tangle")
   "m T" '(org-todo-list :wk "Org todo list")
-  "m m" '(org-babel-execute-src-block :wk "Org babel execute"))
+  "m m" '(org-babel-execute-src-block :wk "Org babel execute")
+  "m n" '(org-babel-execute-buffer :wk "Org babel execute"))
 
 (dt/leader-keys
   "m b" '(:ignore t :wk "Tables")
@@ -174,6 +188,10 @@
     "l d" '(lsp-ui-doc-glance :wk "Doc")
     "l c" '(comment-line :wk "Comment lines"))
 
+  (dt/leader-keys
+    "c" '(:ignore t :wk "Company")
+    "c c" '(lsp-ui-doc-glance :wk "Complete"))
+
   (dt/leader-keys 
     "s" '(:ignore t :wk "Split")
     ;; Window splits
@@ -191,7 +209,6 @@
 
   (dt/leader-keys
     "w" '(:ignore t :wk "Windows")
-
     ;; Window motions
     "w h" '(evil-window-left :wk "Window left")
     "w j" '(evil-window-down :wk "Window down")
@@ -209,7 +226,6 @@
 (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
-
   )
 
 (use-package all-the-icons
@@ -349,7 +365,6 @@ one, an error is signaled."
   (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
   (setq dashboard-center-content t) ;; set to 't' for centered content
   (setq dashboard-items '((recents . 5)
-                          (agenda . 5 )
                           (projects . 3 )))
   :config
   (dashboard-setup-startup-hook))
@@ -372,6 +387,32 @@ one, an error is signaled."
   :ensure t
   :config
   (editorconfig-mode 1))
+
+(use-package elfeed
+:ensure t
+:config
+(evil-define-key 'normal elfeed-show-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev
+  (kbd "L") 'elfeed-goodies/show-link-hint
+  (kbd "H") 'elfeed-goodies/delete-pane)
+(evil-define-key 'normal elfeed-search-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev
+  (kbd "L") 'elfeed-search-show-entry)
+(setq elfeed-feeds (quote(
+  ("https://www.heise.de/security/rss/news.rdf" heise security)
+  ("https://www.heise.de/security/rss/alert-news.rdf" heise security alerts)
+  ("https://www.reddit.com/r/linux.rss" reddit linux)
+  ("https://www.reddit.com/r/linux.rss" reddit linux)
+  ("https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best" reuters news)))))
+
+(use-package elfeed-goodies
+:ensure t
+:init
+(elfeed-goodies/setup)
+(setq elfeed-goodies/entry-pane-size 0.5)
+)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -460,10 +501,26 @@ one, an error is signaled."
   (add-to-list 'org-babel-load-languages '(jupyter . t))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
 
+(setq comp-deferred-compilation-deny-list (list "jupyter"))
+(setq jupyter-use-zmq nil)
+
 (use-package go-mode)
 (add-hook 'go-mode-hook #'lsp-deferred)
 
 (use-package terraform-mode)
+
+(use-package company-terraform
+:init
+(company-terraform-init))
+
+(use-package vue-mode
+:init
+(vue-mode))
+
+(use-package yaml-mode
+:init
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+)
 
 (use-package magit)
 
@@ -677,5 +734,5 @@ The default tab-bar name uses the buffer name."
 (use-package evil-collection
 :after evil
 :config
-(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit))
+(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit elfeed eww))
 (evil-collection-init))

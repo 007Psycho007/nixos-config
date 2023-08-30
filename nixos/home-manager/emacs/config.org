@@ -79,7 +79,6 @@
 (elpaca nil (message "deferred"))
 #+end_src
 
-
 * GENERAL SETTINGS
 #+begin_src emacs-lisp
 (setq use-dialog-box nil)
@@ -87,6 +86,13 @@
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 
 * KEYBINDINGS
@@ -106,7 +112,7 @@
     "SPC" '(counsel-M-x :wk "Counsel M-x")
 
     "TAB" '(tab-bar-switch-to-next-tab :wk "Window Right")
-    "n" '(tab-bar-new-tab :wk "Quit Emacs (No Saves)")
+    "n" '(tab-bar-new-tab :wk "New Tab")
     "x" '(tab-bar-close-tab :wk "Quit Emacs (No Saves)")
     "q" '(delete-frame :wk "Quit Emacs (No Saves)")
     "." '(find-file :wk "Find file")
@@ -125,11 +131,17 @@
   (dt/leader-keys
     "d" '(:ignore t :wk "Dired")
     "d d" '(dired :wk "Open dired")
-    "d c" '(dired-create-empty-file :wk "Open dired")
-    "d a" '(dired-create-directory :wk "Open dired")
+    "d c" '(dired-create-empty-file :wk "Create File")
+    "d a" '(dired-create-directory :wk "Create Directory")
     "d j" '(dired-jump :wk "Dired jump to current")
     "d n" '(neotree-dir :wk "Open directory in neotree")
     "d p" '(peep-dired :wk "Peep-dired"))
+
+  (dt/leader-keys
+    "r" '(:ignore t :wk "Misc Tools")
+    "r f" '(:ignore t :wk "Elfeed")
+    "r f f" '(elfeed :wk "Open Elfeed")
+    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link"))
 
   (dt/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -138,8 +150,7 @@
     "e e" '(eval-expression :wk "Evaluate and elisp expression")
     "e h" '(counsel-esh-history :which-key "Eshell history")
     "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-    "e r" '(eval-region :wk "Evaluate elisp in region")
-    "e s" '(eshell :which-key "Eshell"))
+    "e r" '(eval-region :wk "Evaluate elisp in region"))
 
  (dt/leader-keys
     "h" '(:ignore t :wk "Help")
@@ -155,7 +166,8 @@
   "m t" '(org-todo :wk "Org todo")
   "m B" '(org-babel-tangle :wk "Org babel tangle")
   "m T" '(org-todo-list :wk "Org todo list")
-  "m m" '(org-babel-execute-src-block :wk "Org babel execute"))
+  "m m" '(org-babel-execute-src-block :wk "Org babel execute")
+  "m n" '(org-babel-execute-buffer :wk "Org babel execute"))
 
 (dt/leader-keys
   "m b" '(:ignore t :wk "Tables")
@@ -190,6 +202,10 @@
     "l d" '(lsp-ui-doc-glance :wk "Doc")
     "l c" '(comment-line :wk "Comment lines"))
 
+  (dt/leader-keys
+    "c" '(:ignore t :wk "Company")
+    "c c" '(lsp-ui-doc-glance :wk "Complete"))
+
   (dt/leader-keys 
     "s" '(:ignore t :wk "Split")
     ;; Window splits
@@ -207,7 +223,6 @@
 
   (dt/leader-keys
     "w" '(:ignore t :wk "Windows")
-
     ;; Window motions
     "w h" '(evil-window-left :wk "Window left")
     "w j" '(evil-window-down :wk "Window down")
@@ -225,7 +240,6 @@
 (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
-
   )
 
 
@@ -381,6 +395,7 @@ one, an error is signaled."
 
 * DASHBOARD
 #+begin_src emacs-lisp
+
 (use-package dashboard
   :ensure t 
   :if (< (length command-line-args) 2)
@@ -392,7 +407,6 @@ one, an error is signaled."
   (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
   (setq dashboard-center-content t) ;; set to 't' for centered content
   (setq dashboard-items '((recents . 5)
-                          (agenda . 5 )
                           (projects . 3 )))
   :config
   (dashboard-setup-startup-hook))
@@ -425,6 +439,37 @@ Hide Extensions from Modeline
   :ensure t
   :config
   (editorconfig-mode 1))
+#+end_src
+
+* ELFEED
+#+begin_src emacs-lisp
+
+(use-package elfeed
+:ensure t
+:config
+(evil-define-key 'normal elfeed-show-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev
+  (kbd "L") 'elfeed-goodies/show-link-hint
+  (kbd "H") 'elfeed-goodies/delete-pane)
+(evil-define-key 'normal elfeed-search-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev
+  (kbd "L") 'elfeed-search-show-entry)
+(setq elfeed-feeds (quote(
+  ("https://www.heise.de/security/rss/news.rdf" heise security)
+  ("https://www.heise.de/security/rss/alert-news.rdf" heise security alerts)
+  ("https://www.reddit.com/r/linux.rss" reddit linux)
+  ("https://www.reddit.com/r/linux.rss" reddit linux)
+  ("https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best" reuters news)))))
+
+(use-package elfeed-goodies
+:ensure t
+:init
+(elfeed-goodies/setup)
+(setq elfeed-goodies/entry-pane-size 0.5)
+)
+
 #+end_src
 * GRAPHICAL USER INTERFACE TWEAKS
 Let's make GNU Emacs look a little better.
@@ -549,6 +594,8 @@ Let's make GNU Emacs look a little better.
   (add-to-list 'org-babel-load-languages '(jupyter . t))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
 
+(setq comp-deferred-compilation-deny-list (list "jupyter"))
+(setq jupyter-use-zmq nil)
 #+end_src
 
 *** Go
@@ -561,8 +608,26 @@ Let's make GNU Emacs look a little better.
 #+begin_src emacs-lisp
 (use-package terraform-mode)
 
+(use-package company-terraform
+:init
+(company-terraform-init))
 #+end_src
 
+*** Javascript 
+**** VueJS
+#+begin_src emacs-lisp
+(use-package vue-mode
+:init
+(vue-mode))
+#+end_src
+
+*** YAML
+#+begin_src emacs-lisp
+(use-package yaml-mode
+:init
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+)
+#+end_src
 * MAGIT
 #+begin_src emacs-lisp
 (use-package magit)
@@ -891,7 +956,7 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 (use-package evil-collection
 :after evil
 :config
-(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit))
+(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit elfeed eww))
 (evil-collection-init))
 #+end_src
 

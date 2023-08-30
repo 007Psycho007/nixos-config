@@ -160,7 +160,7 @@ in
 
     services.emacs = {
       enable = true;
-      package = pkgs.emacs29;
+      package = pkgs.emacs;
     };
 
   system.stateVersion = "22.11"; # Did you read the comment?
