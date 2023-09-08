@@ -141,7 +141,8 @@
     "r" '(:ignore t :wk "Misc Tools")
     "r f" '(:ignore t :wk "Elfeed")
     "r f f" '(elfeed :wk "Open Elfeed")
-    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link"))
+    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link")
+    "r f u" '(elfeed-update :wk "Update Feed"))
 
   (dt/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -160,14 +161,18 @@
     "h r r" '(reload-init-file :wk "Reload emacs config"))
 (dt/leader-keys
   "m" '(:ignore t :wk "Org")
+  "m j" '(org-babel-next-src-block :wk "Next Source Block")
+  "m k" '(org-babel-previous-src-block :wk "Prev Source Block")
   "m a" '(org-agenda :wk "Org agenda")
   "m e" '(org-export-dispatch :wk "Org export dispatch")
+  "m p" '(org-display-inline-images :wk "Org Display Images")
   "m i" '(org-toggle-item :wk "Org toggle item")
   "m t" '(org-todo :wk "Org todo")
   "m B" '(org-babel-tangle :wk "Org babel tangle")
   "m T" '(org-todo-list :wk "Org todo list")
-  "m m" '(org-babel-execute-src-block :wk "Org babel execute")
-  "m n" '(org-babel-execute-buffer :wk "Org babel execute"))
+  "m s" '(org-edit-src-code :wk "Edit Source Block")
+  "m m" '(org-babel-execute-src-block :wk "Babel execute Block")
+  "m n" '(org-babel-execute-buffer :wk "Babel execute Buffer"))
 
 (dt/leader-keys
   "m b" '(:ignore t :wk "Tables")
@@ -240,9 +245,8 @@
 (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
-  )
 
-
+)
 #+end_src
 
 * ALL THE ICONS
@@ -627,6 +631,11 @@ Let's make GNU Emacs look a little better.
 :init
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 )
+#+end_src
+
+*** DOCKER
+#+begin_src emacs-lisp
+(use-package dockerfile-mode)
 #+end_src
 * MAGIT
 #+begin_src emacs-lisp

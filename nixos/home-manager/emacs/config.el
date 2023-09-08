@@ -3,13 +3,13 @@
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-			  :ref nil
-			  :files (:defaults (:exclude "extensions"))
-			  :build (:not elpaca--activate-package)))
+			      :ref nil
+			      :files (:defaults (:exclude "extensions"))
+			      :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-   (build (expand-file-name "elpaca/" elpaca-builds-directory))
-   (order (cdr elpaca-order))
-   (default-directory repo))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
   (add-to-list 'load-path (if (file-exists-p build) build repo))
   (unless (file-exists-p repo)
     (make-directory repo t)
@@ -17,17 +17,17 @@
     (condition-case-unless-debug err
 	(if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
 		 ((zerop (call-process "git" nil buffer t "clone"
-				   (plist-get order :repo) repo)))
+				       (plist-get order :repo) repo)))
 		 ((zerop (call-process "git" nil buffer t "checkout"
-				   (or (plist-get order :ref) "--"))))
+				       (or (plist-get order :ref) "--"))))
 		 (emacs (concat invocation-directory invocation-name))
 		 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-				   "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+				       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
 		 ((require 'elpaca))
 		 ((elpaca-generate-autoloads "elpaca" repo)))
 	    (kill-buffer buffer)
 	  (error "%s" (with-current-buffer buffer (buffer-string))))
-  ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
   (unless (require 'elpaca-autoloads nil t)
     (require 'elpaca)
     (elpaca-generate-autoloads "elpaca" repo)
@@ -127,7 +127,8 @@
     "r" '(:ignore t :wk "Misc Tools")
     "r f" '(:ignore t :wk "Elfeed")
     "r f f" '(elfeed :wk "Open Elfeed")
-    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link"))
+    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link")
+    "r f u" '(elfeed-update :wk "Update Feed"))
 
   (dt/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -146,14 +147,18 @@
     "h r r" '(reload-init-file :wk "Reload emacs config"))
 (dt/leader-keys
   "m" '(:ignore t :wk "Org")
+  "m j" '(org-babel-next-src-block :wk "Next Source Block")
+  "m k" '(org-babel-previous-src-block :wk "Prev Source Block")
   "m a" '(org-agenda :wk "Org agenda")
   "m e" '(org-export-dispatch :wk "Org export dispatch")
+  "m p" '(org-display-inline-images :wk "Org Display Images")
   "m i" '(org-toggle-item :wk "Org toggle item")
   "m t" '(org-todo :wk "Org todo")
   "m B" '(org-babel-tangle :wk "Org babel tangle")
   "m T" '(org-todo-list :wk "Org todo list")
-  "m m" '(org-babel-execute-src-block :wk "Org babel execute")
-  "m n" '(org-babel-execute-buffer :wk "Org babel execute"))
+  "m s" '(org-edit-src-code :wk "Edit Source Block")
+  "m m" '(org-babel-execute-src-block :wk "Babel execute Block")
+  "m n" '(org-babel-execute-buffer :wk "Babel execute Buffer"))
 
 (dt/leader-keys
   "m b" '(:ignore t :wk "Tables")
@@ -226,7 +231,8 @@
 (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
-  )
+
+)
 
 (use-package all-the-icons
   :ensure t
@@ -521,6 +527,8 @@ one, an error is signaled."
 :init
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 )
+
+(use-package dockerfile-mode)
 
 (use-package magit)
 
