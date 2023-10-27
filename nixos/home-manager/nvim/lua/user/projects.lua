@@ -1,4 +1,4 @@
 require("project_nvim").setup {
     detection_methods = { "lsp", "pattern" },
-    patterns = { ".git", "main.py",">Projects"},
+    patterns = { ".git", "main.py",">Projects",">production",">private",">learning"},
 }

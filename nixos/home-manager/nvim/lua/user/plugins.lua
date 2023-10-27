@@ -18,11 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- UI and Colorschemes
   {"iamcco/markdown-preview.nvim",build = function() vim.fn["mkdp#util#install"]() end,},
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
   "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
   "nvim-lualine/lualine.nvim",
   'nanozuki/tabby.nvim',
-  "lukas-reineke/indent-blankline.nvim",
+  {"lukas-reineke/indent-blankline.nvim"},
   'navarasu/onedark.nvim',
   --"nvim-zh/colorful-winsep.nvim",
   'akinsho/bufferline.nvim',
@@ -33,7 +33,7 @@ require('lazy').setup({
   "folke/todo-comments.nvim",
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
   "folke/which-key.nvim",
-  "kyazdani42/nvim-tree.lua",
+  "nvim-tree/nvim-tree.lua",
   "sidebar-nvim/sidebar.nvim",
   'RaafatTurki/hex.nvim',
   "jcdickinson/wpm.nvim",

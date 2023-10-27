@@ -1,9 +1,7 @@
-require("indent_blankline").setup {
-    show_end_of_line = false,
-    show_current_context = true,
-    show_current_context_start = true,
-    use_treesitter = true,
-    filetype_exclude = {
+require("ibl").setup {
+    scope = { enabled = true },
+    exclude = {
+        filetypes = {
         "lspinfo",
         "packer",
         "checkhealth",
@@ -11,11 +9,8 @@ require("indent_blankline").setup {
         "man",
         "norg",
         "",
+        }
     },
-    char = " ",
-    context_char = "▎",
-    context_highlight_list = {
-        'IndentChar'
-    }
+    indent = { char = "▎",tab_char = " " }
 
 }

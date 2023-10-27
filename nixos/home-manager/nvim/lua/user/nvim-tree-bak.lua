@@ -4,10 +4,23 @@ local function on_attach(bufnr)
   local function opts(desc)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
+
 api.config.mappings.default_on_attach(bufnr)
 end
 
-require("nvim-tree").setup{
+local status_ok, nvim_tree = pcall(require, "nvim-tree")
+if not status_ok then
+  return
+end
+
+local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
+if not config_status_ok then
+  return
+end
+
+local tree_cb = nvim_tree_config.nvim_tree_callback
+
+nvim_tree.setup {
 
   on_attach = on_attach,
   renderer = {
@@ -37,6 +50,7 @@ require("nvim-tree").setup{
     },
   },
   disable_netrw = true,
+  remove_keymaps = {"<Tab>"},
   hijack_netrw = true,
   open_on_tab = false,
   hijack_cursor = false,
@@ -66,6 +80,7 @@ require("nvim-tree").setup{
   },
   view = {
     width = 30,
+    hide_root_folder = false,
     side = "right",
     -- auto_resize = true,
     number = false,
@@ -82,3 +97,40 @@ require("nvim-tree").setup{
   --  tree_width = 30,
   --},
 }
+
+
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("NvimTreeClose", {clear = true}),
+  pattern = "NvimTree_*",
+  callback = function()
+    local layout = vim.api.nvim_call_function("winlayout", {})
+    if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then vim.cmd("confirm quit") end
+  end
+})
+
+local function open_nvim_tree(data)
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+  if not directory and not no_name then
+    return
+  end
+
+  -- change to the directory
+  if directory then
+    vim.cmd.cd(data.file)
+  
+  -- open the tree
+    require("nvim-tree.api").tree.open()
+  end
+
+  if no_name then
+    require("nvim-tree.api").tree.toggle({ focus = false, find_file = true, })
+  end
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })

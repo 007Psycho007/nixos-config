@@ -130,13 +130,13 @@ in
     gnumake
     gcc
     libtool
-    bitwarden
     any-nix-shell
     xclip
     bluez
     pavucontrol
     playerctl
     virt-manager
+    imagemagick
     ];
 
   fonts.fonts = with pkgs; [
