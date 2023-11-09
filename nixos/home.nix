@@ -61,6 +61,8 @@
                       selection_foreground #282c34
                       selection_background #979eab
                       background_opacity 0.95
+                      modify_font underline_position 9
+                      modify_font underline_thickness 150%
                       '';
     };
 
@@ -194,7 +196,7 @@
 
         nix_shell = {
           symbol = "";
-          format = " [$symbol $name](fg:blue bg:8) ";
+          format = " [$symbol $state](fg:blue bg:8) ";
         };
 
         character = {
