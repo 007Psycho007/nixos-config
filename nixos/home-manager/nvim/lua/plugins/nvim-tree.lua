@@ -88,7 +88,7 @@ return {
           --  tree_width = 30,
           --},
         }
-
+    vim.opt.fillchars:append { eob = " " }
     end
 }
 

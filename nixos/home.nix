@@ -139,7 +139,7 @@
           untracked = " ?$count";
           stashed = " $$count";
           renamed = " »$count";
-          deleted = " $count";
+          deleted = " X$count";
           staged = " +$count";
           modified = " !$count";
           format = "[$all_status](fg:red bg:8) ";

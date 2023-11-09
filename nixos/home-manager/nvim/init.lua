@@ -1,4 +1,5 @@
 require "options"
+require "lsp"
 require "keys"
 require "lazy-config"
 require "utils"

@@ -67,7 +67,7 @@ return {
                             top = d
                         end
                     end
-                    local icons = { " ", " ", " ", " " }
+                    local icons = { " ", " ", " ", " " }
                     local hl = {
                         self.highlights.error,
                         self.highlights.warn,
