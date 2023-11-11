@@ -137,6 +137,7 @@ in
     playerctl
     virt-manager
     imagemagick
+    spectacle
     ];
 
   fonts.fonts = with pkgs; [

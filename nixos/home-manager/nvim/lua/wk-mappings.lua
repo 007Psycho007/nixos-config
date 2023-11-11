@@ -15,6 +15,7 @@ local mappings = {
   ["n"] = { "<cmd>tabnew<cr>", "New Tab"},
   ["c"] = { "<cmd>tabclose<cr>", "Close Tab"},
   ["e"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
+  ["z"] = { "<cmd>:ZenMode<cr>", "Zen Mode"},
   s = {
     name = "Split",
     v = { "<cmd>vsplit<cr>", "Split Vertical"},

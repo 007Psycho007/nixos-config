@@ -122,7 +122,7 @@ return {
               lualine_a ={ { 'mode',fmt = status } },
               lualine_b = {'branch', 'diff', 'diagnostics'},
               lualine_c = {{
-                  
+                        diagnostics_message,                 
                         colors = {
                             error = "#e86671",
                             warn = "#e5c07b",

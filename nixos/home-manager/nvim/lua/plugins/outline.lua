@@ -1,5 +1,6 @@
 return {
     'simrat39/symbols-outline.nvim',
+    cmd = {"SymbolsOutline","SymbolsOutlineOpen"},
     opts = {
           keymaps = { -- These keymaps can be a string or a table for multiple keys
             close = {"<Esc>", "q"},

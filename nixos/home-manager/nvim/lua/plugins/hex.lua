@@ -1,5 +1,6 @@
 return {
     'RaafatTurki/hex.nvim',
+    cmd = "HexToggle",
     opts = {
 
           -- cli command used to dump hex data
