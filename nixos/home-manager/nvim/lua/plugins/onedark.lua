@@ -1,5 +1,6 @@
 return {
     'navarasu/onedark.nvim',
+    priority = 100,
     config = function()
     require('onedark').setup{
 	  colors = {

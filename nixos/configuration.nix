@@ -126,6 +126,7 @@ in
     rofi
     feh
     git
+    jq
     cmake
     gnumake
     gcc

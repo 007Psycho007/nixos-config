@@ -3,7 +3,7 @@ return {
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
     opts = {
-          ensure_installed = {"go", "gomod", "python", "html", "lua", "markdown", "sql", "bash", "dockerfile", "yaml", "hcl", "terraform", "nix","markdown","markdown_inline"},
+          ensure_installed = {"go", "gomod", "python", "html", "http", "json", "lua", "markdown", "sql", "bash", "dockerfile", "yaml", "hcl", "terraform", "nix", "markdown", "markdown_inline"},
           sync_install = false, 
           ignore_install = { "" }, -- List of parsers to ignore installing
           highlight = {

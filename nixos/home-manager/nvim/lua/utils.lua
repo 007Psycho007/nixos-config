@@ -20,3 +20,8 @@ icons.set_icon {
   }
 }
 
+function ExitNVim()
+    print("Do you want to save your open files before exiting? y/n")
+    local fname = vim.fn.input("Do you want to save your open files before exiting? y/n", "", "n")
+
+end
