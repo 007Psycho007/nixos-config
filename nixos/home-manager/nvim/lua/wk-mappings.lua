@@ -13,7 +13,7 @@ local mappings = {
   ["b"] = { "<cmd>Telescope buffers<CR>", "Open Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["n"] = { "<cmd>tabnew<cr>", "New Tab"},
-  ["c"] = { "<cmd>tabclose<cr>", "Close Tab"},
+  ["x"] = { "<cmd>tabclose<cr>", "Close Tab"},
   ["e"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
   ["z"] = { "<cmd>:ZenMode<cr>", "Zen Mode"},
 
