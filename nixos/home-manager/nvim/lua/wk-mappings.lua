@@ -14,6 +14,7 @@ local mappings = {
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["n"] = { "<cmd>tabnew<cr>", "New Tab"},
   ["x"] = { "<cmd>tabclose<cr>", "Close Tab"},
+  ["d"] = { "<cmd>bdelete<cr>", "Close Buffer"},
   ["e"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
   ["z"] = { "<cmd>:ZenMode<cr>", "Zen Mode"},
 

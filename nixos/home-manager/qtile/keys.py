@@ -30,7 +30,6 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "t", lazy.window.toggle_floating(), desc='Toggle floating'),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
-
     Key(
         [mod, "shift"],
         "Return",
@@ -51,7 +50,7 @@ keys = [
 
     Key([mod], "p", lazy.spawn(os.path.expanduser("~/.config/scripts/display-selector.sh"))),
     Key([mod], "g", lazy.spawn(os.path.expanduser("~/.config/scripts/dmenu/menu.sh")), desc="Script Menu"),
-    Key([mod], "x", lazy.spawn("betterlockscreen -l"), desc="Screen Lock"),
+    Key([mod], "x", lazy.spawn(os.path.expanduser("~/.config/scripts/lock.sh")), desc="Screen Lok"),
     Key([mod], "b", lazy.spawn(os.path.expanduser("~/.config/scripts/bwmenu/bwmenu")), desc="Screen Lock"),
     Key([mod], "m", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
     # Playerctl

@@ -139,6 +139,7 @@ in
     virt-manager
     imagemagick
     spectacle
+    i3lock-color
     ];
 
   fonts.fonts = with pkgs; [
