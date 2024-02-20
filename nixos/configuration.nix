@@ -115,8 +115,6 @@ in
 
   services.blueman.enable = true;
 
-  services.lorri.enable = true;
-  
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nyxt
@@ -140,6 +138,10 @@ in
     imagemagick
     spectacle
     i3lock-color
+    nodejs
+    spotify-tui
+    appimage-run
+    topydo
     ];
 
   fonts.fonts = with pkgs; [
@@ -160,10 +162,20 @@ in
       };
     };
 
-
     services.emacs = {
       enable = true;
       package = pkgs.emacs;
+    };
+
+    services.spotifyd = {
+      enable = true;
+      settings = {
+        global = {
+          username = "1163141852";
+          password_cmd = "cat /Keys/spotify-password.txt";
+          backend = "pulseaudio";
+        };
+      };
     };
 
   system.stateVersion = "22.11"; # Did you read the comment?

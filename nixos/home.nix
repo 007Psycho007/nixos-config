@@ -196,7 +196,7 @@
 
         nix_shell = {
           symbol = "";
-          format = " [$symbol $state](fg:blue bg:8) ";
+          format = " [$symbol $name](fg:blue bg:8) ";
         };
 
         character = {
@@ -227,7 +227,6 @@
                               enable_transience
                               fish_vi_key_bindings
                               any-nix-shell fish | source
-                              direnv hook fish | source
                               set fish_greeting";
       plugins = [
         {
@@ -262,9 +261,6 @@
     };
 
   # ...other config, other config...
-    programs.direnv = {
-      enable = true;
-    };
 
     services.emacs = {
       enable = true;

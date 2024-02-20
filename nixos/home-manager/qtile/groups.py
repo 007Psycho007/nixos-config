@@ -89,8 +89,9 @@ groups.append(
         DropDown("term", "kitty", opacity=1.0),
     ])
 )
+
 groups.append(
-    ScratchPad("ncspot", [
-        DropDown("ncspot", "kitty -e ncspot", opacity=1.0),
+    ScratchPad("appflowy", [
+        DropDown("appflowy", "appimage-run ~/Apps/appflowy.appimage", opacity=1.0),
     ])
 )
