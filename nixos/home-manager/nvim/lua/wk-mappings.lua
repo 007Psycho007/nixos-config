@@ -26,6 +26,7 @@ local mappings = {
   a = {
     name = "Tabnine",
     a = { "<cmd>TabnineToggle<cr>", "Toggle Tabnine"},
+    c = { "<cmd>TabnineChat<cr>", "Chat"},
     },
 
   s = {

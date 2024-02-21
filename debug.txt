@@ -1,0 +1,1 @@
+nix-shell -p cargo pkg-config glib webkitgtk libsoup webkitgtk_4_1
