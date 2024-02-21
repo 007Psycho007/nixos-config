@@ -1,7 +1,9 @@
 return {
     "rest-nvim/rest.nvim",
     dependencies = { { "nvim-lua/plenary.nvim" } },
-    opts = {
+    config = function() 
+        
+    require("rest-nvim").setup({
         skip_ssl_verification = false,
         result = {
         show_url = true,
@@ -14,5 +16,6 @@ return {
           end
         },
       },       
-    }
+    })
+    end
 }

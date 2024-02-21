@@ -88,7 +88,7 @@ in
      windowManager.qtile = {
         enable = true;
         extraPackages = python3Packages: with python3Packages; [
-          qtile-extras
+          (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" ]; }))
 	      ];
      };
   };
@@ -144,7 +144,7 @@ in
     topydo
     ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
     emacs-all-the-icons-fonts
   ];
@@ -178,5 +178,5 @@ in
       };
     };
 
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

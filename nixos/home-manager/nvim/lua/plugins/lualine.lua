@@ -130,7 +130,7 @@ return {
                             hint = "#61afef",
                 }
                         }},
-              lualine_x = { 'encoding'},
+              lualine_x = {'tabnine','encoding'},
               lualine_y = {'filetype'},
               lualine_z = {'location'}
             },

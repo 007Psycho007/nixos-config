@@ -22,6 +22,12 @@ local mappings = {
     name = "Rest Client",
     r = {"<Plug>RestNvim","Run Rest Client"}
     },
+
+  a = {
+    name = "Tabnine",
+    a = { "<cmd>TabnineToggle<cr>", "Toggle Tabnine"},
+    },
+
   s = {
     name = "Split",
     v = { "<cmd>vsplit<cr>", "Split Vertical"},
@@ -103,7 +109,6 @@ local vopts = {
 local vmappings = {
   ["/"] = { "<ESC><CMD>lua require(\"Comment.api\").toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
   ["s"] = {"<cmd>ToggleTermSendVisualLines<cr>", "Send Visual"},
-
 }
 
 local status_ok, wk = pcall(require, "which-key")
