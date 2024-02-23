@@ -127,7 +127,7 @@ def network(bg,**kwargs):
         **default_label(),
         background=bg,
         fmt="<span size='12pt'>󰛳</span>{}",
-        format='{down} ↓↑ {up}',
+        format='{down:6.2f} ↓↑ {up:6.2f}',
         width=150,
         **kwargs
     )
