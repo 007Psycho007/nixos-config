@@ -58,8 +58,8 @@ groups = [
         Group("set",label="",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),
         Group("doc",label="",matches=doc_match),
-        Group("re9",label="󰎼"),
-        Group("re0",label="󰎡",matches=other_match),
+        Group("vim",label=""),
+        Group("cld",label="󰅟",matches=other_match),
         ]
 for i , o in enumerate(groups):
     keys.extend(

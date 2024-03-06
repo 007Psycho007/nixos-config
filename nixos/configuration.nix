@@ -141,7 +141,7 @@ in
     nodejs
     spotify-tui
     appimage-run
-    topydo
+    brightnessctl
     ];
 
   fonts.packages = with pkgs; [
