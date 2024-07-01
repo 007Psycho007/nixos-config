@@ -34,6 +34,7 @@ in
   };
 
   networking.hostName = vars.hostName; # Define your hostname.
+  networking.nameservers = [ "1.1.1.1" "8.8.88" ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -142,6 +143,7 @@ in
     spotify-tui
     appimage-run
     brightnessctl
+    bitwarden-cli
     ];
 
   fonts.packages = with pkgs; [

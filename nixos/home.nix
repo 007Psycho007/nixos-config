@@ -174,7 +174,7 @@
 
         python = {
           symbol = "";
-          format = " [$symbol $version](fg:yellow bg:8) ";
+          format = " [$symbol $version $virtualenv ](fg:yellow bg:8) ";
         };
 
         terraform = {
@@ -241,10 +241,10 @@
       ];
     };
     
-#    programs.qutebrowser = {
-#      enable = true;
-#      extraConfig = (builtins.readFile ./home-manager/qutebrowser/config.py);
-#    };
+    programs.qutebrowser = {
+      enable = true;
+      extraConfig = (builtins.readFile ./home-manager/qutebrowser/config.py);
+    };
     programs.lazygit.enable = true;
     programs.lsd = {
         enable = true;
