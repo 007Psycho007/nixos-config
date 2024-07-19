@@ -53,7 +53,7 @@ groups = [
         Group("dev",label="",layout="monadwide"),
         Group("web",label="󰖟",layout="tile",matches=web_match),
         Group("med",label="󰝚",layout="tile",matches=med_match),
-        Group("com",label="󰍬", layout="tile",matches=com_match),
+        Group("com",label="󰍬", layout="tabbed",matches=com_match),
         Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
         Group("set",label="",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),

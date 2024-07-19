@@ -1,102 +1,78 @@
-local opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+  return
+end
 
 local mappings = {
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>qa!<CR>", "Quit without saving" },
-  ["b"] = { "<cmd>Telescope buffers<CR>", "Open Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["n"] = { "<cmd>tabnew<cr>", "New Tab"},
-  ["x"] = { "<cmd>tabclose<cr>", "Close Tab"},
-  ["d"] = { "<cmd>bdelete<cr>", "Close Buffer"},
-  ["e"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
-  ["z"] = { "<cmd>:ZenMode<cr>", "Zen Mode"},
+  { "<leader>a", group = "Tabnine", nowait = true, remap = false, icon={icon="󰧑",hl="WhichKeyIconOrange"}},
+  { "<leader>aa", "<cmd>TabnineToggle<cr>", desc = "Toggle Tabnine", nowait = true, remap = false },
+  { "<leader>ac", "<cmd>TabnineChat<cr>", desc = "Chat", nowait = true, remap = false ,icon={icon="󰧑",hl="WhichKeyIconOrange"}},
 
-  r = {
-    name = "Rest Client",
-    r = {"<Plug>RestNvim","Run Rest Client"}
-    },
-
-  a = {
-    name = "Tabnine",
-    a = { "<cmd>TabnineToggle<cr>", "Toggle Tabnine"},
-    c = { "<cmd>TabnineChat<cr>", "Chat"},
-    },
-
-  s = {
-    name = "Split",
-    v = { "<cmd>vsplit<cr>", "Split Vertical"},
-    h = {"<cmd>split<cr>", "Split Horizontal"},
-    c = {"<cmd>close<cr>", "Close Window"},
-    },
-
-  f = {
-    name = "Files/Search",
-    s = {"<cmd>SidebarNvimToggle<cr>", "Sidebar"},
-    f = {"<cmd>Telescope find_files<cr>", "Find Files"},
-    g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
-    t = {"<cmd>NvimTreeToggle<cr>","NVIM Tree"}
-    },
-
-  g = {
-    name = "Git",
-
-    g = { "<cmd>Neogit<cr>", "NeoGit" },
-    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-    l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    u = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stage Hunk",
-    },
-
-    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Diff",
-    },
+  { "<leader>b", group = "buffers", icon={icon="󰈔",hl="WhichKeyIconOrange"}, expand = function()
+      return require("which-key.extras").expand.buf()
+    end
   },
 
-  c = {
-    name = "Code Actions",
-    t = {"<cmd>TodoTelescope<cr>", "Todos"},
-    h = {"<cmd>HexToggle<cr>", "Toggle Hexedit"},
-    c = {"<cmd>ColorizerToggle<cr>", "Toggle Colorizer"},
-    j = {
-      name = "JSON",
-      f = {"<CMD>:%! jq .<cr>","Format JSON"}
-    },
-  },
+  { "<leader>c", group = "Code Actions", nowait = true, remap = false, icon={icon=" ",hl="WhichKeyIconOrange"}},
+  { "<leader>cc", "<cmd>ColorizerToggle<cr>", desc = "Toggle Colorizer", nowait = true, remap = false, icon="" },
+  { "<leader>ch", "<cmd>HexToggle<cr>", desc = "Toggle Hexedit", nowait = true, remap = false, icon="󱊧" },
+  { "<leader>cj", group = "JSON", nowait = true, remap = false, icon=""},
+  { "<leader>cjf", "<CMD>:%! jq .<cr>", desc = "Format JSON", nowait = true, remap = false },
+  { "<leader>ct", "<cmd>TodoTelescope<cr>", desc = "Todos", nowait = true, remap = false, icon="" },
 
-    l = {
-      name = "LSP",
-      d = { "<cmd>Lspsaga hover_doc<cr>", "Documenation"},
-      o = { "<cmd>SymbolsOutline<cr>", "Code Outline"},
-      r = { "<cmd>Lspsaga rename<cr>", "Rename Definition"},
-      s = { "<cmd>Telescope diagnostics<CR>", "Diagnostic List"},
-      c = { "<cmd>Telescope lsp_references<CR>", "Declaration"},
-      f = { "<cmd>Telescope lsp_definitions<CR>", "Definition"},
-      i = { "<cmd>LspInfo<cr>", "Info" },
-      I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    },
+  { "<leader>d", "<cmd>bdelete<cr>", desc = "Close Buffer", nowait = true, remap = false, icon={icon=" ",hl="WhichKeyIconBlue"}},
 
-  t = {
-    name = "Terminal",
-    t = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-  },
+  { "<leader>e", "<cmd>Lspsaga show_line_diagnostics<cr>", desc = "Line Diagnostics", nowait = true, remap = false, icon={icon="󱖫 ",hl="WhichKeyIconBlue"} },
+
+  { "<leader>f", group = "Files/Search", nowait = true, remap = false,icon={icon="󰱽 ",hl="WhichKeyIconOrange"} },
+  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files", nowait = true, remap = false },
+  { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep", nowait = true, remap = false },
+  { "<leader>fs", "<cmd>SidebarNvimToggle<cr>", desc = "Sidebar", nowait = true, remap = false },
+  { "<leader>ft", "<cmd>NvimTreeToggle<cr>", desc = "NVIM Tree", nowait = true, remap = false },
+
+  { "<leader>g", group = "Git", nowait = true, remap = false },
+  { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
+  { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
+  { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff", nowait = true, remap = false },
+  { "<leader>gg", "<cmd>Neogit<cr>", desc = "NeoGit", nowait = true, remap = false },
+  { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
+  { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },
+  { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
+  { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
+  { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk", nowait = true, remap = false },
+  { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk", nowait = true, remap = false },
+  { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
+
+  { "<leader>h", "<cmd>nohlsearch<CR>", desc = "No Highlight", nowait = true, remap = false , icon = {icon="󰙒 ",hl="WhichKeyIconBlue"}},
+
+  { "<leader>l", group = "LSP", nowait = true, remap = false, icon ={icon=" ",hl="WhichKeyIconOrange"}},
+  { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false, icon = " " },
+  { "<leader>lc", "<cmd>Telescope lsp_references<CR>", desc = "Declaration", nowait = true, remap = false, icon = " " },
+  { "<leader>ld", "<cmd>Lspsaga hover_doc<cr>", desc = "Documenation", nowait = true, remap = false, icon = " " },
+  { "<leader>lf", "<cmd>Telescope lsp_definitions<CR>", desc = "Definition", nowait = true, remap = false, icon = " " },
+  { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false, icon = " " },
+  { "<leader>lo", "<cmd>SymbolsOutline<cr>", desc = "Code Outline", nowait = true, remap = false , icon = " "},
+  { "<leader>lr", "<cmd>Lspsaga rename<cr>", desc = "Rename Definition", nowait = true, remap = false, icon = " " },
+  { "<leader>ls", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostic List", nowait = true, remap = false },
+
+  { "<leader>n", "<cmd>tabnew<cr>", desc = "New Tab", nowait = true, remap = false, icon={icon="󰓩 ",hl="WhichKeyIconBlue"}},
+
+  { "<leader>q", "<cmd>qa!<CR>", desc = "Quit without saving", nowait = true, remap = false, icon={icon="󰈆 ",hl="WhichKeyIconRed"} },
+
+  { "<leader>s", group = "Split", nowait = true, remap = false, icon={icon=" ",hl="WhichKeyIconBlue"} },
+  { "<leader>sc", "<cmd>close<cr>", desc = "Close Window", nowait = true, remap = false,icon={icon=" ",hl="WhichKeyIconBlue"}},
+  { "<leader>sh", "<cmd>split<cr>", desc = "Split Horizontal", nowait = true, remap = false,icon={icon=" ",hl="WhichKeyIconBlue"}},
+  { "<leader>sv", "<cmd>vsplit<cr>", desc = "Split Vertical", nowait = true, remap = false,icon={icon=" ",hl="WhichKeyIconBlue"} },
+
+  { "<leader>t", group = "Terminal", nowait = true, remap = false, icon={icon="",hl="WhichKeyIconOrange"}},
+  { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float", nowait = true, remap = false },
+  { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "Horizontal", nowait = true, remap = false },
+  { "<leader>tt", "<cmd>ToggleTerm direction=tab<cr>", desc = "Tab", nowait = true, remap = false },
+  { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "Vertical", nowait = true, remap = false },
+
+  { "<leader>w", "<cmd>w!<CR>", desc = "Save", nowait = true, remap = false, icon ={icon="",hl="WhichKeyIconGreen"}},
+  { "<leader>x", "<cmd>tabclose<cr>", desc = "Close Tab", nowait = true, remap = false ,icon={icon="󰭌",hl="WhichKeyIconRed"}},
+  { "<leader>z", "<cmd>:ZenMode<cr>", desc = "Zen Mode", nowait = true, remap = false, icon = "󰚀" },
 }
 
 local vopts = {
@@ -117,5 +93,4 @@ if not status_ok then
   return
 end
 
-wk.register(mappings, opts)
-wk.register(vmappings, vopts)
+wk.add(mappings)

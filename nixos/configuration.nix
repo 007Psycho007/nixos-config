@@ -144,6 +144,7 @@ in
     appimage-run
     brightnessctl
     bitwarden-cli
+    bitwarden
     ];
 
   fonts.packages = with pkgs; [
