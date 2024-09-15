@@ -10,5 +10,7 @@
     chromium
     citrix_workspace
     rocketchat-desktop
+    spice-gtk
+    virt-viewer
   ];
 }

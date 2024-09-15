@@ -63,9 +63,9 @@ in
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   programs.fish.enable = true;
@@ -80,16 +80,17 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  services.displayManager.defaultSession = "qtile";
+
   services.xserver = {
      enable = true;
      autorun = true;
-     displayManager.defaultSession = "none+qtile";
      desktopManager.xterm.enable = false;
      displayManager.lightdm.enable = true;
      windowManager.qtile = {
         enable = true;
-        extraPackages = python3Packages: with python3Packages; [
-          (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" "test/widget/test_visualiser.py" ]; }))
+        extraPackages = python312Packages: with python312Packages; [
+          (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" "test/widget/test_visualiser.py" "test/widget/test_iwd.py" "test/widget/test_upower.py"]; }))
 	      ];
      };
   };
@@ -102,7 +103,6 @@ in
       };
     };
   };
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -135,12 +135,10 @@ in
     bluez
     pavucontrol
     playerctl
-    virt-manager
     imagemagick
     spectacle
     i3lock-color
     nodejs
-    spotify-tui
     appimage-run
     brightnessctl
     bitwarden-cli
@@ -152,6 +150,9 @@ in
     emacs-all-the-icons-fonts
   ];
 
+  security.pki.certificateFiles = [
+    certs/internal.pem
+  ];
   virtualisation = {
       podman = {
         enable = true;
@@ -180,6 +181,5 @@ in
         };
       };
     };
-
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
