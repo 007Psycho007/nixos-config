@@ -57,6 +57,11 @@ local mappings = {
 
   { "<leader>n", "<cmd>tabnew<cr>", desc = "New Tab", nowait = true, remap = false, icon={icon="󰓩 ",hl="WhichKeyIconBlue"}},
 
+  { "<leader>o", group = "Obsidian", nowait = true, remap = false, icon ={icon=" ",hl="WhichKeyIconOrange"}},
+  { "<leader>os", "<cmd>ObsidianQuickSwitch<cr>", desc = "Switch Note", nowait = true, remap = false, icon = " " },
+  { "<leader>oc", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Toggle Checkbox", nowait = true, remap = false, icon = " " },
+  
+  
   { "<leader>q", "<cmd>qa!<CR>", desc = "Quit without saving", nowait = true, remap = false, icon={icon="󰈆 ",hl="WhichKeyIconRed"} },
 
   { "<leader>s", group = "Split", nowait = true, remap = false, icon={icon=" ",hl="WhichKeyIconBlue"} },

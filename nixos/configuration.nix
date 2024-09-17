@@ -143,6 +143,8 @@ in
     brightnessctl
     bitwarden-cli
     bitwarden
+    obsidian
+    ripgrep
     ];
 
   fonts.packages = with pkgs; [
