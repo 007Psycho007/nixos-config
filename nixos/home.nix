@@ -1,12 +1,6 @@
-{ config, pkgs, ... }:
-
+{ inputs, pkgs, ... }:
 {
-  imports =
-    [
-      <home-manager/nixos>
-    ];
-  
-  home-manager.users.psycho = {
+    home.username = "psycho";
     home.homeDirectory = "/home/psycho";
 
     xdg.configFile.qtile.source = ./home-manager/qtile;
@@ -253,8 +247,7 @@
 
     programs.neovim = {
       enable = true;
-      extraLuaPackages = ps: [ ps.magick ];
-      extraPackages = ps: [ ps.imagemagick ];
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       vimAlias = true;
       vimdiffAlias = true;
       withPython3 = true;
@@ -274,5 +267,4 @@
     };
 
   home.stateVersion = "23.11";
-  };
 } 

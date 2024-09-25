@@ -7,7 +7,7 @@ return {
     config = function()
         require("mason").setup()
         require("mason-lspconfig").setup({
-          ensure_installed = {'pyright', 'gopls', 'terraformls','tsserver','vuels'}
+          ensure_installed = {'pyright', 'gopls', 'terraformls','vuels'}
         })
 
         local lspconfig = require('lspconfig')

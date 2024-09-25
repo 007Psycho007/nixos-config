@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 let
   vars = import ./vars.nix;
 in
@@ -10,7 +10,6 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home.nix
       ./local.nix
     ];
 
@@ -80,7 +79,7 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  services.displayManager.defaultSession = "qtile";
+  services.displayManager.defaultSession = "none+qtile";
 
   services.xserver = {
      enable = true;
@@ -103,6 +102,7 @@ in
       };
     };
   };
+  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
