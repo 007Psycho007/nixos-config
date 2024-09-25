@@ -253,6 +253,8 @@
 
     programs.neovim = {
       enable = true;
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = ps: [ ps.imagemagick ];
       vimAlias = true;
       vimdiffAlias = true;
       withPython3 = true;

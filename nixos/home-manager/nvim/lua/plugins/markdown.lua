@@ -17,7 +17,7 @@ return {
             -- Determines how icons fill the available space:
             --  inline:  underlying '#'s are concealed resulting in a left aligned icon
             --  overlay: result is left padded with spaces to hide any additional '#'
-            position = 'overlay',
+            position = 'inline',
             -- Replaces '#+' of 'atx_h._marker'
             -- The number of '#' in the heading determines the 'level'
             -- The 'level' is used to index into the array using a cycle
