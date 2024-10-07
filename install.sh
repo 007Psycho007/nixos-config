@@ -9,6 +9,6 @@ sudo cp -r ./nixos/locals/$(hostname).nix /etc/nixos/local.nix
 sudo rm -rf /etc/nixos/home-manager/
 sudo cp -r ./nixos/home-manager/ /etc/nixos/home-manager/
 cd /etc/nixos
-sudo nixos-rebuild --flake .#main switch
+sudo nixos-rebuild --impure --flake .#main switch 
 
 

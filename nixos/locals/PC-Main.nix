@@ -18,6 +18,7 @@
     lutris
     steam
     discord
+    xboxdrv
   ];
 
 	services.pipewire.wireplumber.configPackages = [
