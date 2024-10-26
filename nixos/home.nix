@@ -15,9 +15,9 @@
     programs.ssh = {
         enable = true;
         matchBlocks = {
-          "nas" = {
-            hostname = "192.168.0.126";
-            user = "psycho";
+          "vm.linklair.intra" = {
+            hostname = "192.168.0.2";
+            user = "root";
           };
         };
       };
@@ -233,6 +233,9 @@
           };
         }
       ];
+      shellAliases = {
+        ns = "nix-shell --extra-experimental-features flakes";
+      };
     };
     
     programs.qutebrowser = {

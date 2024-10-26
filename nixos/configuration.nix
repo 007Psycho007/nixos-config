@@ -33,7 +33,7 @@ in
   };
 
   networking.hostName = vars.hostName; # Define your hostname.
-  networking.nameservers = [ "1.1.1.1" "8.8.88" ];
+  networking.nameservers = [ "192.168.0.3" "8.8.8.8" ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -171,6 +171,15 @@ in
     services.emacs = {
       enable = true;
       package = pkgs.emacs;
+    };
+
+    services.udev.packages = [ pkgs.nitrokey-udev-rules ];
+    programs = {
+      ssh.startAgent = false;
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
     };
 
     services.spotifyd = {
