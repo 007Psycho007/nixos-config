@@ -69,17 +69,18 @@ in
 
   programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.groups.input = {};
   users.users.psycho = {
     isNormalUser = true;
     description = "psycho";
-    extraGroups = [ "networkmanager" "wheel" "audio" "docker" "vboxusers"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "docker" "vboxusers" "input"];
     shell = pkgs.fish;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  services.displayManager.defaultSession = "none+qtile";
+  services.displayManager.defaultSession = "qtile";
 
   services.xserver = {
      enable = true;
@@ -102,7 +103,7 @@ in
       };
     };
   };
-  sound.enable = true;
+#sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -182,15 +183,11 @@ in
       };
     };
 
-    services.spotifyd = {
+    services.flatpak.enable = true;
+
+    xdg.portal = {
       enable = true;
-      settings = {
-        global = {
-          username = "1163141852";
-          password_cmd = "cat /Keys/spotify-password.txt";
-          backend = "pulseaudio";
-        };
-      };
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
   system.stateVersion = "24.05"; # Did you read the comment?
 }

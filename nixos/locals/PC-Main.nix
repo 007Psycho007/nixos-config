@@ -19,8 +19,11 @@
     steam
     discord
     xboxdrv
+    streamcontroller
   ];
-
+  services.udev.extraRules = ''
+    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess", GROUP="input", MODE="0660"
+  '';
 	services.pipewire.wireplumber.configPackages = [
     (pkgs.writeTextDir "share/wireplumber/main.lua.d/51-rename-rodecaster.lua" ''
 --

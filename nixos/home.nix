@@ -15,7 +15,7 @@
     programs.ssh = {
         enable = true;
         matchBlocks = {
-          "vm.linklair.intra" = {
+          "vm.linklair.local" = {
             hostname = "192.168.0.2";
             user = "root";
           };
