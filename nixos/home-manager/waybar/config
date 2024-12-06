@@ -6,7 +6,7 @@
         "height": 45,
         "modules-left": ["custom/os_button","hyprland/workspaces","custom/title","hyprland/window"],
         "modules-center": ["mpris"],
-        "modules-right": ["network","disk","cpu","memory","clock"],
+        "modules-right": ["battery","network","disk","cpu","memory","clock"],
         
         "hyprland/workspaces": {
             "move-to-monitor": true,
