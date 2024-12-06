@@ -281,15 +281,20 @@
       systemd.enable = true;
       settings = {
 
-        # exec-once= [
-        #   "waybar"
-        # ];
+        exec-once= [
+          "waybar"
+          "setxkbmap"
+        ];
 
         "$terminal" = "kitty";
         "$menu" = "rofi -show run";
 
 
         "$mod" = "SUPER"; # Sets "Windows" key as main modifier
+
+        monitor = [
+          "eDP-1, 1920x1080,0x0,1"  
+        ];
         general = {
           gaps_in = 4;
           gaps_out = 8;
@@ -318,6 +323,7 @@
         };
         input = {
           follow_mouse = 2;
+          kb_options = "caps:escape";
         };
         windowrulev2 = [
           "workspace 4, class:^(discord)$"

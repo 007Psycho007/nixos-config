@@ -153,6 +153,7 @@ in
     obsidian
     ripgrep
     waybar
+    wdisplays
     ];
 
   fonts.packages = with pkgs; [
