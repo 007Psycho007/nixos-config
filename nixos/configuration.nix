@@ -82,6 +82,12 @@ in
 
   services.displayManager.defaultSession = "qtile";
 
+  programs.hyprland = {
+    # Install the packages from nixpkgs
+    enable = true;
+    # Whether to enable XWayland
+    xwayland.enable = true;
+  };
   services.xserver = {
      enable = true;
      autorun = true;
@@ -146,6 +152,7 @@ in
     bitwarden
     obsidian
     ripgrep
+    waybar
     ];
 
   fonts.packages = with pkgs; [
