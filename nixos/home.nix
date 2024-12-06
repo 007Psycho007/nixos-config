@@ -15,7 +15,7 @@
 
     home.packages = with pkgs; [
       (writeShellScriptBin "vim" ''
-        kitty --app-id "nvim" -e nvim "$@"
+        kitty --app-id "nvim" -e nvim "$@" &
       '')
     ];
     programs.ssh = {
@@ -327,6 +327,8 @@
           "workspace 10, class:^(Shadow PC)$"
           "workspace 10, class:^(Shadow PC - Display)$"
           "workspace 9, class:^(nvim)$"
+          "workspace 7, class:^(steam)$"
+          "workspace 4, class:^(chromium)$"
           "workspace 8, class:^(obsidian)$"
         ];
         bind = [
