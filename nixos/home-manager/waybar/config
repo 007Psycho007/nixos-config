@@ -4,7 +4,7 @@
         "layer": "top",
         "position": "top",
         "height": 45,
-        "modules-left": ["custom/os_button","hyprland/workspaces","custom/title","hyprland/window"],
+        "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window"],
         "modules-center": ["mpris"],
         "modules-right": ["battery","network","disk","cpu","memory","clock"],
         
@@ -32,12 +32,15 @@
             "max-length": 20, 
             "separate-outputs": true,
             "icon": false,
-            
+            "format": "<span color='#61AFEF'>  </span> {title} ",
+            "min-length": 25,
+            "max-length": 25,
+            "align": 0
         },
 
         "custom/os_button": {
             "format": "",
-            "on-click": "rofi --show drun",
+            "on-click": "rofi -show drun",
             "tooltip": false
         },
 

@@ -15,11 +15,6 @@ window#waybar {
     /* transition-duration: .5s; */
 }
 
-#window {
-    border-radius: 20px;
-    padding-left: 4px;
-    padding-right: 4px;
-}
     
 window > box {
 	margin-top: 8px;
@@ -27,7 +22,7 @@ window > box {
 	margin-right: 8px;
     background-color: rgba(49, 53, 63, 1);
     color: #ABB2BF;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: none;
 }
 
@@ -44,16 +39,15 @@ window#waybar.empty {
     padding: 0 5px;
     margin: 4px;
     margin-right: 10px;
-    border: 2px solid #282C34;
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: #5C6370;
 }
 
 #workspaces button:hover {
-    background: #181a1f;
-    border: 1px;
-    border-radius: 4px;
+    background: transparent;
+    border: none;
     box-shadow: none;
+    text-shadow: none;
 }
 
 #workspaces button {
@@ -80,8 +74,15 @@ window#waybar.empty {
 #custom-os_button {
 	font-family: "Source Code Pro";
     font-size: 20px;
-	padding-left: 12px;
-	padding-right: 20px;
+	padding-left: 5px;
+	padding-right: 13px;
+    margin: 4px;
+    margin-right: 6px;
+    margin-left: 5px;
+    border-radius: 6px;
+    border: 2px solid #61afef;
+    background-color: #61afef;
+    color: #282C34;
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -100,7 +101,7 @@ window#waybar.empty {
     margin: 4px;
     margin-right: 10px;
     border: 2px solid #282C34;
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: #5C6370;
     color: #61AFEF;
 }
@@ -110,7 +111,7 @@ window#waybar.empty {
     margin: 4px;
     margin-right: 10px;
     border: 2px solid #282C34;
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: #98C379;
     color: #282C34;
 }
@@ -120,18 +121,18 @@ window#waybar.empty {
     margin: 4px;
     margin-right: 10px;
     margin-left: 5px;
-    border-radius: 4px;
+    border-radius: 6px;
     border: 2px solid #181a1f;
     background-color: #181a1f;
     color: #ABB2BF;
 }
 
-#memory, #cpu, #network, #disk, #battery {
+#memory, #cpu, #network, #disk, #battery , #window {
     padding: 0 6px;
     margin: 4px;
     margin-right: 6px;
     margin-left: 5px;
-    border-radius: 4px;
+    border-radius: 6px;
     border: 2px solid #181a1f;
     background-color: #181a1f;
     color: #ABB2BF;
