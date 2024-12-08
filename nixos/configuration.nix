@@ -111,6 +111,8 @@ in
   };
 #sound.enable = true;
   security.rtkit.enable = true;
+  security.pam.services.hyprlock = {};
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -129,7 +131,7 @@ in
     wget
     zsh
     firefox
-    rofi
+    rofi-wayland
     feh
     git
     jq
@@ -154,6 +156,7 @@ in
     ripgrep
     waybar
     wdisplays
+    walker
     ];
 
   fonts.packages = with pkgs; [
@@ -195,7 +198,7 @@ in
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
     };
   system.stateVersion = "24.05"; # Did you read the comment?
 }

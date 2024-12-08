@@ -127,7 +127,7 @@ window#waybar.empty {
     color: #ABB2BF;
 }
 
-#memory, #cpu, #network, #disk, #battery , #window {
+#memory, #cpu, #network, #network.up,#network.down,  #disk, #battery , #window {
     padding: 0 6px;
     margin: 4px;
     margin-right: 6px;

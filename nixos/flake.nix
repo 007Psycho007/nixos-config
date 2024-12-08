@@ -23,7 +23,14 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.users.psycho = import ./home.nix;
+            home-manager.users.psycho.imports =  [
+              ./home.nix
+              ./home-manager/hypr/hypr.nix
+              ./home-manager/hypr/hyprlock.nix
+              ./home-manager/hypr/hyprpaper.nix
+              ./home-manager/tmux/tmux.nix
+              ./home-manager/starship/starship.nix
+            ];
           }
         ];
       };

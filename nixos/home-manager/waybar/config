@@ -6,7 +6,7 @@
         "height": 45,
         "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window"],
         "modules-center": ["mpris"],
-        "modules-right": ["battery","network","disk","cpu","memory","clock"],
+        "modules-right": ["battery","network", "network#up", "network#down","disk","cpu","memory","clock"],
         
         "hyprland/workspaces": {
             "move-to-monitor": true,
@@ -110,17 +110,34 @@
 
         "network": {
             "format": "{ifname}",
-            "format-wifi": "<span color='#C678DD'> </span> {essid} ({bandwidthUpBytes}/{bandwidthDownBytes})",
-            "format-ethernet": "<span color='#C678DD'>󰈀 </span> {ifname} ({bandwidthUpBytes}/{bandwidthDownBytes})",
+            "format-wifi": "<span color='#C678DD'> </span> {essid}",
+            "format-ethernet": "<span color='#C678DD'>󰈀 </span> {ifname}",
             "format-disconnected": "<span color='#C678DD'>󰈂 </span> Disconnected", //An empty format will hide the module.
             "tooltip-format": "{ifname} via {gwaddr}",
             "tooltip-format-wifi": "{ipaddr} via {gwaddr}",
             "tooltip-format-ethernet": "{ipaddr} via {gwaddr}",
             "tooltip-format-disconnected": "Disconnected",
-            "max-length": 20,
-            "min-length": 20
+            "max-length": 10,
+            "min-length": 10
         },
-
+        "network#up": {
+            "align": 0,
+            "format": "{ifname}",
+            "format-wifi": "<span color='#C678DD'> </span> {bandwidthUpBytes}",
+            "format-ethernet": "<span color='#C678DD'> </span> {bandwidthUpBytes}",
+            "format-disconnected": "<span color='#C678DD'> </span> {bandwidthUpBytes}",
+            "max-length": 10,
+            "min-length": 10
+        },
+        "network#down": {
+            "align": 0,
+            "format": "{ifname}",
+            "format-wifi": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
+            "format-ethernet": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
+            "format-disconnected": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
+            "max-length": 10,
+            "min-length": 10
+        },
         "disk": {
             "interval": 30,
             "format": "<span color='#E36C75'> </span> {percentage_free}%",
