@@ -48,7 +48,12 @@
         };
         input = {
           follow_mouse = 2;
-          kb_options = "caps:escape";
+          kb_options = [
+            "caps:escape"
+            "grp:win_space_toggle"
+          ];
+          kb_layout="us,de";
+
         };
         windowrulev2 = [
           "workspace 4, class:^(discord)$"

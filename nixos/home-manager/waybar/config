@@ -4,7 +4,7 @@
         "layer": "top",
         "position": "top",
         "height": 45,
-        "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window"],
+        "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language"],
         "modules-center": ["mpris"],
         "modules-right": ["battery","network", "network#up", "network#down","disk","cpu","memory","clock"],
         
@@ -32,7 +32,7 @@
             "max-length": 20, 
             "separate-outputs": true,
             "icon": false,
-            "format": "<span color='#61AFEF'>  </span> {title} ",
+            "format": "<span color='#61AFEF'>  </span> {title} ",
             "min-length": 25,
             "max-length": 25,
             "align": 0
@@ -132,7 +132,7 @@
         "network#down": {
             "align": 0,
             "format": "{ifname}",
-            "format-wifi": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
+            "format-wifi": "<span color='#c678dd'> </span> {bandwidthDownBytes}",
             "format-ethernet": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
             "format-disconnected": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
             "max-length": 10,
@@ -142,8 +142,8 @@
             "interval": 30,
             "format": "<span color='#E36C75'> </span> {percentage_free}%",
             "path": "/",
-            "min-length": 7,
             "max-length": 7,
+            "min-length": 7,
         },
 
         "battery": {
@@ -160,6 +160,13 @@
                 "<span color='#98C379'>  </span>", 
                 "<span color='#98C379'>  </span>"],
             "max-length": 25
+        },
+        "hyprland/language": {
+            "format": "<span color='#61afef'>󰌌 </span> {}",
+            "format-en": "en",
+            "format-de": "de",
+            "max-length": 5,
+            "min-length": 5,
         }
     },
 
