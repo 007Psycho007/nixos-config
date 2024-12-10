@@ -6,6 +6,7 @@
       plugins = [ pkgs.hyprlandPlugins.hy3 ];
       settings = {
         exec-once= [
+          "hyprpaper"
           "waybar"
           "pavucontrol"
           "kitty"
@@ -75,7 +76,7 @@
         ];
 
         bindm = [
-           "$mod, mouse:272, hy3:movewindow"
+           "$mod, mouse:272, movewindow"
         ];
         bind = [
             "$mod SHIFT, Q, killactive"
@@ -91,8 +92,10 @@
             "$mod , L, hy3:movefocus, r"
             "$mod , K, hy3:movefocus, u"
             "$mod , J, hy3:movefocus, d"
-            "$mod SHIFT, H, movecurrentworkspacetomonitor, l"
-            "$mod SHIFT, L, movecurrentworkspacetomonitor, r"
+            "$mod SHIFT, H, hy3:movewindow, l"
+            "$mod SHIFT, L, hy3:movewindow, r"
+            "$mod SHIFT, K, hy3:movewindow, u"
+            "$mod SHIFT, J, hy3:movewindow, d"
 
             "$mod, T,hy3:makegroup, tab"
             "$mod, U,hy3:changegroup, untab"
