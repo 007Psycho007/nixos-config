@@ -28,7 +28,7 @@
           inner_color = "rgb(40, 44, 52)";
           outer_color = "rgb(97, 175, 239)";
           outline_thickness = 5;
-          placeholder_text = "\'<span foreground=\"##cad3f5\">Password...</span>\'";
+          placeholder_text = "\'<span foreground=\"##cad3f5\">Enter Password</span>\'";
           shadow_passes = 2;
         }
       ];

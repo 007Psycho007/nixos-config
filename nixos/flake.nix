@@ -9,6 +9,7 @@
           inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager,... }: {
@@ -26,6 +27,7 @@
             home-manager.users.psycho.imports =  [
               ./home.nix
               ./home-manager/hypr/hypr.nix
+              ./home-manager/hypr/hypr-local.nix
               ./home-manager/hypr/hyprlock.nix
               ./home-manager/hypr/hyprpaper.nix
               ./home-manager/tmux/tmux.nix

@@ -80,7 +80,8 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  services.displayManager.defaultSession = "qtile";
+  services.displayManager.defaultSession = "hyprland";
+
 
   programs.hyprland = {
     # Install the packages from nixpkgs
@@ -89,16 +90,19 @@ in
     xwayland.enable = true;
   };
   services.xserver = {
-     enable = true;
-     autorun = true;
-     desktopManager.xterm.enable = false;
-     displayManager.lightdm.enable = true;
-     windowManager.qtile = {
-        enable = true;
-        extraPackages = python312Packages: with python312Packages; [
-          (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" "test/widget/test_visualiser.py" "test/widget/test_iwd.py" "test/widget/test_upower.py"]; }))
-	      ];
-     };
+    enable = true;
+    autorun = true;
+    desktopManager.xterm.enable = false;
+    displayManager.lightdm = {
+      enable = true;
+      greeters.slick.enable = true;
+    };
+    windowManager.qtile = {
+      enable = true;
+      extraPackages = python312Packages: with python312Packages; [
+        (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" "test/widget/test_visualiser.py" "test/widget/test_iwd.py" "test/widget/test_upower.py"]; }))
+      ];
+    };
   };
 
   hardware.bluetooth = {
@@ -155,8 +159,8 @@ in
     obsidian
     ripgrep
     waybar
-    wdisplays
     walker
+    kanshi
     ];
 
   fonts.packages = with pkgs; [

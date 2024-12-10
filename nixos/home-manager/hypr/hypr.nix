@@ -3,12 +3,12 @@
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
+      plugins = [ pkgs.hyprlandPlugins.hy3 ];
       settings = {
-
         exec-once= [
           "waybar"
-          "kitty"
           "pavucontrol"
+          "kitty"
         ];
 
         "$terminal" = "kitty";
@@ -17,9 +17,6 @@
 
         "$mod" = "SUPER"; # Sets "Windows" key as main modifier
 
-        monitor = [
-          "eDP-1, 1920x1080,0x0,1"  
-        ];
         general = {
           gaps_in = 4;
           gaps_out = 8;
@@ -36,22 +33,28 @@
           # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
           allow_tearing = false;
 
-          layout = "dwindle";
+          layout = "hy3";
         };
         dwindle = {
           preserve_split = true;
           force_split = 2;
-          default_split_ratio = 1.2;
+          default_split_ratio = 1.8;
         };
         decoration = {
           rounding = 8;
         };
+        plugin = {
+          hy3 = {
+            autotile = {
+              enable = true;
+            };
+          };
+        };
+
         input = {
           follow_mouse = 2;
-          kb_options = [
-            "caps:escape"
-            "grp:win_space_toggle"
-          ];
+          kb_options = "caps:escape,grp:win_space_toggle";
+  
           kb_layout="us,de";
 
         };
@@ -72,10 +75,9 @@
         ];
 
         bindm = [
-           "$mod, mouse:272, movewindow"
+           "$mod, mouse:272, hy3:movewindow"
         ];
         bind = [
-            "$mod, mouse:272, movewindow"
             "$mod SHIFT, Q, killactive"
             "$mod , RETURN, exec, $terminal"
             "$mod , D, exec, $menu"
@@ -85,12 +87,15 @@
             "$mod , X, exec, hyprlock"
             "$mod , S, togglesplit"
             # Movement
-            "$mod , H, movefocus, l"
-            "$mod , L, movefocus, r"
-            "$mod , K, movefocus, u"
-            "$mod , J, movefocus, d"
+            "$mod , H, hy3:movefocus, l"
+            "$mod , L, hy3:movefocus, r"
+            "$mod , K, hy3:movefocus, u"
+            "$mod , J, hy3:movefocus, d"
             "$mod SHIFT, H, movecurrentworkspacetomonitor, l"
             "$mod SHIFT, L, movecurrentworkspacetomonitor, r"
+
+            "$mod, T,hy3:makegroup, tab"
+            "$mod, U,hy3:changegroup, untab"
             # Media Keys
             ", XF86AudioNext, exec, playerctl next"
             ", XF86AudioPause, exec, playerctl play-pause"
@@ -107,7 +112,7 @@
                 let ws = i + 1;
                 in [
                   "$mod, code:1${toString i}, workspace, ${toString ws}"
-                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                  "$mod SHIFT, code:1${toString i}, hy3:movetoworkspace, ${toString ws}"
                 ]
               )
               9)

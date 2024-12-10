@@ -102,8 +102,9 @@
         },
 
         "cpu": {
+            "align": 0,
             "interval": 10,
-            "format": "<span color='#E5C07B'> </span> {}%",
+            "format": "<span color='#E5C07B'> </span> {usage:0}%",
             "min-length": 7,
             "max-length": 7,
         },
