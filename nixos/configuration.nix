@@ -160,6 +160,7 @@ in
     ripgrep
     waybar
     walker
+    hyprpaper
     kanshi
     ];
 

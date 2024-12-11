@@ -10,6 +10,7 @@
           "waybar"
           "pavucontrol"
           "kitty"
+
         ];
 
         "$terminal" = "kitty";
@@ -71,7 +72,7 @@
           "workspace 10, class:^(Shadow PC - Display)$"
           "workspace 9, class:^(nvim)$"
           "workspace 7, class:^(steam)$"
-          "workspace 4, class:^(chromium)$"
+          "workspace 4, class:^(chromium-browser)$"
           "workspace 8, class:^(obsidian)$"
         ];
 

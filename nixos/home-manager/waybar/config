@@ -6,7 +6,7 @@
         "height": 45,
         "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language"],
         "modules-center": ["mpris"],
-        "modules-right": ["battery","network", "network#up", "network#down","disk","cpu","memory","clock"],
+        "modules-right": ["battery#icon","battery#text","network#icon","network", "custom/preup","network#up","custom/predown","network#down","custom/predisk","disk","custom/precpu","cpu","custom/premem","memory","custom/preclock", "clock"],
         
         "hyprland/workspaces": {
             "move-to-monitor": true,
@@ -44,6 +44,35 @@
             "tooltip": false
         },
 
+        "custom/preclock": {
+            "format": "<span color='#98C379'> </span>",
+            "tooltip": false
+        },
+        "custom/precpu": {
+            "format": "<span color='#E5C07B'> </span>",
+            "tooltip": false
+        },
+        "custom/premem": {
+            "format": "<span color='#E5C07B'> </span>",
+            "tooltip": false
+        },
+        "custom/predisk": {
+            "format": "<span color='#E36C75'> </span>",
+            "tooltip": false
+        },
+        "custom/prenet": {
+            "format": "<span color='#E36C75'> </span>",
+            "tooltip": false
+        },
+        "custom/preup": {
+            "format": "<span color='#C678DD'> </span>",
+            "tooltip": false
+        },
+        "custom/predown": {
+            "format": "<span color='#c678dd'> </span>",
+            "tooltip": false
+        },
+
 
         "custom/title": {
             "format": " ",
@@ -70,7 +99,7 @@
         },
 
         "clock": {
-            "format": "<span color='#98C379'> </span> {:%H:%M} ",
+            "format": "{:%H:%M} ",
             "tooltip-format": "<tt><small>{calendar}</small></tt>",
             "calendar": {
                         "mode"          : "month",
@@ -95,65 +124,89 @@
         },
 
         "memory": {
+            "align": 1,
             "interval": 30,
-            "format": "<span color='#E5C07B'> </span> {}%",
-            "min-length": 7,
-            "max-length": 7,
+            "format": "{}%",
+            "min-length": 4,
+            "max-length": 4,
         },
 
         "cpu": {
-            "align": 0,
+            "align": 1,
             "interval": 10,
-            "format": "<span color='#E5C07B'> </span> {usage:0}%",
-            "min-length": 7,
-            "max-length": 7,
+            "format": "{usage:0}%",
+            "min-length": 4,
+            "max-length": 4,
         },
 
-        "network": {
+        "network#icon": {
             "format": "{ifname}",
-            "format-wifi": "<span color='#C678DD'> </span> {essid}",
-            "format-ethernet": "<span color='#C678DD'>󰈀 </span> {ifname}",
-            "format-disconnected": "<span color='#C678DD'>󰈂 </span> Disconnected", //An empty format will hide the module.
+            "format-wifi": "<span color='#C678DD'> </span>",
+            "format-ethernet": "<span color='#C678DD'>󰈀 </span>",
+            "format-disconnected": "<span color='#C678DD'>󰈂 </span>", //An empty format will hide the module.
             "tooltip-format": "{ifname} via {gwaddr}",
             "tooltip-format-wifi": "{ipaddr} via {gwaddr}",
             "tooltip-format-ethernet": "{ipaddr} via {gwaddr}",
             "tooltip-format-disconnected": "Disconnected",
-            "max-length": 10,
-            "min-length": 10
-        },
-        "network#up": {
-            "align": 0,
-            "format": "{ifname}",
-            "format-wifi": "<span color='#C678DD'> </span> {bandwidthUpBytes}",
-            "format-ethernet": "<span color='#C678DD'> </span> {bandwidthUpBytes}",
-            "format-disconnected": "<span color='#C678DD'> </span> {bandwidthUpBytes}",
-            "max-length": 10,
-            "min-length": 10
-        },
-        "network#down": {
-            "align": 0,
-            "format": "{ifname}",
-            "format-wifi": "<span color='#c678dd'> </span> {bandwidthDownBytes}",
-            "format-ethernet": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
-            "format-disconnected": "<span color='#C678DD'> </span> {bandwidthDownBytes}",
-            "max-length": 10,
-            "min-length": 10
-        },
-        "disk": {
-            "interval": 30,
-            "format": "<span color='#E36C75'> </span> {percentage_free}%",
-            "path": "/",
-            "max-length": 7,
-            "min-length": 7,
         },
 
-        "battery": {
+        "network": {
+            "format": "{ifname}",
+            "format-wifi": "{essid}",
+            "format-ethernet": "{ifname}",
+            "format-disconnected": "Disconnected", //An empty format will hide the module.
+            "tooltip-format": "{ifname} via {gwaddr}",
+            "tooltip-format-wifi": "{ipaddr} via {gwaddr}",
+            "tooltip-format-ethernet": "{ipaddr} via {gwaddr}",
+            "tooltip-format-disconnected": "Disconnected",
+            "max-length": 7,
+            "min-length": 7
+        },
+        "network#up": {
+            "align": 1,
+            "format": "{ifname}",
+            "format-wifi": "{bandwidthUpBytes}",
+            "format-ethernet": "{bandwidthUpBytes}",
+            "format-disconnected": "{bandwidthUpBytes}",
+            "max-length": 7,
+            "min-length": 7
+        },
+        "network#down": {
+            "align": 1,
+            "format": "{ifname}",
+            "format-wifi": "{bandwidthDownBytes}",
+            "format-ethernet": "{bandwidthDownBytes}",
+            "format-disconnected": "{bandwidthDownBytes}",
+            "max-length": 7,
+            "min-length": 7
+        },
+
+        "disk": {
+            "align": 1,
+            "interval": 30,
+            "format": "{percentage_free}%",
+            "path": "/",
+            "max-length": 4,
+            "min-length": 4,
+        },
+
+        "battery.text": {
             "interval": 60,
             "states": {
                 "warning": 30,
                 "critical": 15
             },
-            "format": "{icon} {capacity}% ",
+            "format": "{capacity}%",
+            "max-length": 25
+        },
+
+        "battery#icon": {
+            "interval": 60,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon}",
             "format-icons": [
                 "<span color='#E36C75'>  </span>", 
                 "<span color='#E36C75'>  </span>", 
@@ -162,6 +215,7 @@
                 "<span color='#98C379'>  </span>"],
             "max-length": 25
         },
+
         "hyprland/language": {
             "format": "<span color='#61afef'>󰌌 </span> {}",
             "format-en": "en",

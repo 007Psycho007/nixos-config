@@ -79,6 +79,7 @@
         bind r source-file ~/.config/tmux/tmux.conf
         # Set Terminal Colors
         set -g default-terminal "screen-256color"
+        set -g allow-passthrough 1
 
         # Split Panes
         unbind '"'
@@ -86,14 +87,6 @@
         bind , split-window -h
         bind . split-window -v
 
-        #Create Session
-        new -s Session Main # create new session
-        neww -n Main "neofetch;zsh" # create new window
-        split-window -v  
-        resize-pane -D 5
-        split-window -h 
-        swapw -t 2 -t 1
-        select-pane -t 1
       '';
     };
   }
