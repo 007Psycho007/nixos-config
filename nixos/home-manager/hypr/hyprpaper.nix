@@ -8,10 +8,10 @@
       splash_offset = 2.0;
 
       preload =
-        [ "~/.config/files/wall.jpg" ];
+        [ "~/.config/files/wall.png" ];
 
       wallpaper = [
-        ", ~/.config/files/wall.jpg"
+        ", ~/.config/files/wall.png"
       ];
     };
   };

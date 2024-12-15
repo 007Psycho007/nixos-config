@@ -69,7 +69,7 @@
           "workspace 6, class:^(streamcontroller)$"
           "workspace 5, class:^(pavucontrol)$"
           "workspace 10, class:^(Shadow PC)$"
-          "workspace 10, class:^(Shadow PC - Display)$"
+          "workspace 10, title:^(Shadow PC - Display)$"
           "workspace 9, class:^(nvim)$"
           "workspace 7, class:^(steam)$"
           "workspace 4, class:^(chromium-browser)$"
