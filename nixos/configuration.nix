@@ -161,7 +161,10 @@ in
     waybar
     walker
     hyprpaper
+    hyprshot
     kanshi
+    wdisplays
+    swaynotificationcenter
     ];
 
   fonts.packages = with pkgs; [
@@ -172,6 +175,7 @@ in
   security.pki.certificateFiles = [
     certs/internal.pem
   ];
+
   virtualisation = {
       podman = {
         enable = true;

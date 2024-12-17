@@ -6,7 +6,7 @@
         "height": 45,
         "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language"],
         "modules-center": ["mpris"],
-        "modules-right": ["battery#icon","battery#text","network#icon","network", "custom/preup","network#up","custom/predown","network#down","custom/predisk","disk","custom/precpu","cpu","custom/premem","memory","custom/preclock", "clock"],
+        "modules-right": ["battery#icon","battery#text","network#icon","network", "custom/preup","network#up","custom/predown","network#down","custom/predisk","disk","custom/precpu","cpu","custom/premem","memory","custom/preclock", "clock", "custom/notification"],
         
         "hyprland/workspaces": {
             "move-to-monitor": true,
@@ -159,8 +159,8 @@
             "tooltip-format-wifi": "{ipaddr} via {gwaddr}",
             "tooltip-format-ethernet": "{ipaddr} via {gwaddr}",
             "tooltip-format-disconnected": "Disconnected",
-            "max-length": 7,
-            "min-length": 7
+            "max-length": 6,
+            "min-length": 6
         },
         "network#up": {
             "align": 1,
@@ -168,8 +168,8 @@
             "format-wifi": "{bandwidthUpBytes}",
             "format-ethernet": "{bandwidthUpBytes}",
             "format-disconnected": "{bandwidthUpBytes}",
-            "max-length": 7,
-            "min-length": 7
+            "max-length": 6,
+            "min-length": 6
         },
         "network#down": {
             "align": 1,
@@ -177,8 +177,8 @@
             "format-wifi": "{bandwidthDownBytes}",
             "format-ethernet": "{bandwidthDownBytes}",
             "format-disconnected": "{bandwidthDownBytes}",
-            "max-length": 7,
-            "min-length": 7
+            "max-length": 6,
+            "min-length": 6
         },
 
         "disk": {
@@ -222,7 +222,30 @@
             "format-de": "de",
             "max-length": 5,
             "min-length": 5,
-        }
+        },
+
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+              "notification": "<span color='#E36C75'></span>",
+              "none": "<span color='#61afef'></span>",
+              "dnd-notification":"<span color='#E36C75'></span>",
+              "dnd-none": "<span color='#61afef'></span>",
+              "inhibited-notification": "<span color='#E36C75'></span>",
+              "inhibited-none": "<span color='#61afef'></span>",
+              "dnd-inhibited-notification": "<span color='#E36C75'></span>",
+              "dnd-inhibited-none": "<span color='#61afef'></span>"
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "swaync-client -t -sw",
+            "on-click-right": "swaync-client -d -sw",
+            "escape": true,
+            "max-length": 2,
+            "min-length": 2
+        },
     },
 
 ]

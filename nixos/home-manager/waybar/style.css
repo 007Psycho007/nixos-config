@@ -183,7 +183,7 @@ window#waybar.empty {
     background-color: #181a1f;
     color: #ABB2BF;
 }
-#window, #language {
+#window, #language, #custom-notification {
     padding: 0 6px;
     margin: 4px;
     margin-right: 6px;

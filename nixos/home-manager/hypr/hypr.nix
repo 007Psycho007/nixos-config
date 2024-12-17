@@ -10,7 +10,7 @@
           "waybar"
           "pavucontrol"
           "kitty"
-
+          "swaync"
         ];
 
         "$terminal" = "kitty";
@@ -90,6 +90,9 @@
             "$mod , P, pseudo"
             "$mod , X, exec, hyprlock"
             "$mod , S, togglesplit"
+            "$mod , C, exec, hyprshot -m region -o ~/Pictures/"
+
+
             # Movement
             "$mod , H, hy3:movefocus, l"
             "$mod , L, hy3:movefocus, r"

@@ -11,5 +11,3 @@ sudo cp -r ./nixos/home-manager/ /etc/nixos/home-manager/
 sudo cp -r ./nixos/locals/hypr-$(hostname).nix /etc/nixos/home-manager/hypr/hypr-local.nix
 cd /etc/nixos
 sudo nixos-rebuild --impure --flake .#main switch 
-
-

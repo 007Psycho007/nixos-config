@@ -122,7 +122,9 @@
       enable = true;
       extraConfig = (builtins.readFile ./home-manager/qutebrowser/config.py);
     };
+
     programs.lazygit.enable = true;
+
     programs.lsd = {
         enable = true;
         enableAliases = true;
