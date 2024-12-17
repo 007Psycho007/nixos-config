@@ -33,6 +33,7 @@
               ./home-manager/hypr/hyprpaper.nix
               ./home-manager/tmux/tmux.nix
               ./home-manager/starship/starship.nix
+              ./home-manager/swaync/swaync.nix
             ];
           }
         ];
