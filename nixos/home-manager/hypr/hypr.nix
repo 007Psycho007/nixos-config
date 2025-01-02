@@ -40,7 +40,7 @@
         dwindle = {
           preserve_split = true;
           force_split = 2;
-          default_split_ratio = 1.8;
+          default_split_ratio = 1.2;
         };
         decoration = {
           rounding = 8;
@@ -102,6 +102,8 @@
             "$mod SHIFT, L, hy3:movewindow, r"
             "$mod SHIFT, K, hy3:movewindow, u"
             "$mod SHIFT, J, hy3:movewindow, d"
+            "$mod ALT, H, movecurrentworkspacetomonitor, l"
+            "$mod ALT, L, movecurrentworkspacetomonitor, r"
 
             "$mod, T,hy3:makegroup, tab"
             "$mod, U,hy3:changegroup, untab"
