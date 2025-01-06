@@ -165,6 +165,7 @@ in
     kanshi
     wdisplays
     swaynotificationcenter
+    webcord
     ];
 
   fonts.packages = with pkgs; [
@@ -203,7 +204,13 @@ in
       };
     };
 
-    services.flatpak.enable = true;
+    services.flatpak = {
+      enable = true;
+      packages = [
+        "io.github.unknownskl.greenlight"
+      ];
+    };
+
 
     xdg.portal = {
       enable = true;

@@ -64,6 +64,7 @@
 
         windowrulev2 = [
           "workspace 4, class:^(discord)$"
+          "workspace 4, class:^(WebCord)$"
           "workspace 2, class:^(firefox)$"
           "workspace 2, class:^(qutebrowser)$"
           "workspace 1, class:^(kitty)$"
@@ -76,6 +77,7 @@
           "workspace 7, class:^(steam)$"
           "workspace 4, class:^(chromium-browser)$"
           "workspace 8, class:^(obsidian)$"
+          "workspace 8, class:^(greenlight)$"
         ];
 
         bindm = [

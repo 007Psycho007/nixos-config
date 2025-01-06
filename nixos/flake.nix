@@ -3,6 +3,7 @@
   description = "flake for main";
 
   inputs = {
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     home-manager = {
@@ -10,15 +11,17 @@
           inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.5.2";
 
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager,... }: {
+  outputs = inputs@{ self, nix-flatpak, nixpkgs, home-manager,... }: {
     nixosConfigurations = {
       main = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
+          nix-flatpak.nixosModules.nix-flatpak
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {

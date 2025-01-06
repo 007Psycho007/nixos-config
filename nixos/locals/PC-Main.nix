@@ -4,7 +4,6 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./shadow.nix
     ];
 
   hardware.graphics = {
@@ -18,7 +17,6 @@
   environment.systemPackages = with pkgs; [
     lutris
     steam
-    discord
     xboxdrv
     streamcontroller
   ];
