@@ -75,7 +75,7 @@
           "workspace 10, title:^(Shadow PC - Display)$"
           "workspace 9, class:^(nvim)$"
           "workspace 7, class:^(steam)$"
-          "workspace 4, class:^(chromium-browser)$"
+          "workspace 4, class:^(Chromium-browser)$"
           "workspace 8, class:^(obsidian)$"
           "workspace 8, class:^(greenlight)$"
         ];

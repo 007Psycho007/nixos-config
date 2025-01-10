@@ -180,11 +180,16 @@ in
   virtualisation = {
       podman = {
         enable = true;
-        dockerCompat = true;
         defaultNetwork.settings = {
           dns_enabled = true;
         };
       };
+      docker = {
+        enable = true;
+        extraOptions = ''
+          --insecure-registry docker.linklair.local:5000
+        '';
+    };
       virtualbox.host = {
         enable = true;
       };
