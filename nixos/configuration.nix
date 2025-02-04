@@ -166,6 +166,7 @@ in
     wdisplays
     swaynotificationcenter
     webcord
+    discord
     ];
 
   fonts.packages = with pkgs; [
