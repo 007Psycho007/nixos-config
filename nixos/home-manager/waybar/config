@@ -4,10 +4,14 @@
         "layer": "top",
         "position": "top",
         "height": 45,
-        "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language"],
+        "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language","tray"],
         "modules-center": ["mpris"],
         "modules-right": ["battery#icon","battery#text","network#icon","network", "custom/preup","network#up","custom/predown","network#down","custom/predisk","disk","custom/precpu","cpu","custom/premem","memory","custom/preclock", "clock", "custom/notification"],
         
+        "tray": {
+            "icon-size": 14,
+            "spacing": 5
+        },
         "hyprland/workspaces": {
             "move-to-monitor": true,
             "format": "{icon}",
