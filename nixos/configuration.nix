@@ -168,6 +168,7 @@ in
     swaynotificationcenter
     webcord
     discord
+    signal-desktop
     ];
 
   fonts.packages = with pkgs; [
