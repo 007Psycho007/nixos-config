@@ -193,6 +193,7 @@ in
           --insecure-registry docker.linklair.local:5000
         '';
     };
+      libvirtd.enable = true;
       virtualbox.host = {
         enable = true;
       };
@@ -219,7 +220,7 @@ in
         "eu.usdx.UltraStarDeluxe"
       ];
     };
-
+    services.tailscale.enable = true;
 
     xdg.portal = {
       enable = true;
