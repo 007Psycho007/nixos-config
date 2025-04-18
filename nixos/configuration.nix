@@ -168,7 +168,6 @@ in
     swaynotificationcenter
     webcord
     discord
-    signal-desktop
     ];
 
   fonts.packages = with pkgs; [
@@ -218,6 +217,7 @@ in
       packages = [
         "io.github.unknownskl.greenlight"
         "eu.usdx.UltraStarDeluxe"
+        "org.signal.Signal"
       ];
     };
     services.tailscale.enable = true;
