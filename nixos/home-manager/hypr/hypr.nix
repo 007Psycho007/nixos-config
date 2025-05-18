@@ -84,6 +84,7 @@
            "$mod, mouse:272, movewindow"
         ];
         bind = [
+            "$mod , f, fullscreenstate, 2"
             "$mod SHIFT, Q, killactive"
             "$mod , RETURN, exec, $terminal"
             "$mod , D, exec, $menu"

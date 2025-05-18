@@ -218,7 +218,15 @@ in
         "io.github.unknownskl.greenlight"
         "eu.usdx.UltraStarDeluxe"
         "org.signal.Signal"
+        "io.github.hmlendea.geforcenow-electron"
       ];
+    };
+    services.flatpak.overrides = {
+      "io.github.hmlendea.geforcenow-electron".Context = {
+        filesystem = [
+          "/run/udev:ro"
+        ];
+      };
     };
     services.tailscale.enable = true;
 
