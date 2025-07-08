@@ -4,9 +4,8 @@
   imports =
     [
       (fetchGit { 
-        url = "https://github.com/Exaltia/shadow-nix"; 
-        ref = "master"; 
-        rev = "b0ceabc3febadc9184e3c50ede8261ddbfdc1808";
+        url = "https://github.com/cornerman/shadow-nix"; 
+        ref = ""; 
       } + "/import/system.nix") #SHADOW
     ];
 

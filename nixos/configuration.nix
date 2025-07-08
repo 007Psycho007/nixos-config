@@ -150,7 +150,6 @@ in
     pavucontrol
     playerctl
     imagemagick
-    spectacle
     i3lock-color
     nodejs
     appimage-run
@@ -171,7 +170,7 @@ in
     ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    nerd-fonts.sauce-code-pro
     emacs-all-the-icons-fonts
   ];
 
@@ -212,6 +211,12 @@ in
       };
     };
 
+    #programs.shadow-client = {
+      # Enabled by default when using import
+      # enable = true;
+    #@  channel = "prod";
+  #};
+
     services.flatpak = {
       enable = true;
       packages = [
@@ -241,5 +246,6 @@ in
       "x-scheme-handler/about" = "firefox.desktop";
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
+    hardware.flipperzero.enable = true;
   system.stateVersion = "24.05"; # Did you read the comment?
 }

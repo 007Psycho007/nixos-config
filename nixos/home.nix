@@ -26,6 +26,12 @@
             hostname = "192.168.0.2";
             user = "root";
           };
+          "github.com" = {
+            hostname = "github.com";
+            user = "git";
+            identityFile = "~/.ssh/id_ed25519_github";
+            identitiesOnly = true;
+          };
         };
       };
 
@@ -127,7 +133,6 @@
 
     programs.lsd = {
         enable = true;
-        enableAliases = true;
       };
 
     programs.neovim = {
