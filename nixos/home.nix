@@ -136,7 +136,7 @@
 
     programs.neovim = {
       enable = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       extraLuaPackages = ps: [ ps.magick];
       extraPackages = [ pkgs.imagemagick ];
       vimdiffAlias = true;

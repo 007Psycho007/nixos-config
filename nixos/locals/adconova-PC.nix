@@ -8,7 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     chromium
-    citrix_workspace
+    #    citrix_workspace
     rocketchat-desktop
     spice-gtk
     virt-viewer

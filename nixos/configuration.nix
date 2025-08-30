@@ -98,12 +98,12 @@ in
       enable = true;
       greeters.slick.enable = true;
     };
-    windowManager.qtile = {
-      enable = true;
-      extraPackages = python312Packages: with python312Packages; [
-        (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" "test/widget/test_visualiser.py" "test/widget/test_iwd.py" "test/widget/test_upower.py"]; }))
-      ];
-    };
+      #windowManager.qtile = {
+      #enable = true;
+      #extraPackages = python312Packages: with python312Packages; [
+      #  (qtile-extras.overridePythonAttrs(old: { disabledTestPaths = [ "test/widget/test_strava.py" "test/widget/test_visualiser.py" "test/widget/test_iwd.py" "test/widget/test_upower.py"]; }))
+      #];
+    #};
   };
 
   hardware.bluetooth = {
@@ -167,6 +167,9 @@ in
     swaynotificationcenter
     webcord
     discord
+    qflipper
+    dragon-drop
+    thunderbird
     ];
 
   fonts.packages = with pkgs; [
@@ -191,7 +194,7 @@ in
           --insecure-registry docker.linklair.local:5000
         '';
     };
-      libvirtd.enable = true;
+    #    libvirtd.enable = true;
       virtualbox.host = {
         enable = true;
       };
